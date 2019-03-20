@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   fillit.h                                           :+:    :+:            */
+/*   ft_validate_input.c                                :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: rlaros <rlaros@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/03/05 22:16:10 by rlaros         #+#    #+#                */
-/*   Updated: 2019/03/20 17:14:28 by rlaros        ########   odam.nl         */
+/*   Created: 2019/03/06 03:42:18 by rlaros         #+#    #+#                */
+/*   Updated: 2019/03/07 06:38:58 by rlaros        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLIT_H
-# define FILLIT_H
-
-#include "../libft/includes/libft.h"
-
 /*
-** ERROR MESSAGES
+** @desc -
+** @param -
+** @var -
 */
-# define WRONG_USAGE "usage: ./fillit source_file\n"
 
-int		ft_setup(int argc, char **argv)
-void	ft_handle_error(int error_code);
+#include "fillit.h"
 
-#endif
+void	ft_validate_input(void)
+{
+
+	// Todo
+}

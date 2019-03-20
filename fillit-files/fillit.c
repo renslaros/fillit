@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   fillit.c                                           :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: rlaros <rlaros@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/05 22:24:06 by rlaros         #+#    #+#                */
-/*   Updated: 2019/03/06 17:53:01 by rlaros        ########   odam.nl         */
+/*   Updated: 2019/03/20 17:17:19 by rlaros        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,16 @@
 
 int		main(int argc, char **argv)
 {
-	if (argc != 2)
-	{
-		ft_handle_error(1);	
-	}
 	
 	if (ft_setup(argc, argv) == 1)
 	{
-		// Setup will call ft_validate and ft_configure()
-		// Input is validated & configured  if ft_setup returns 1
-		// ft_start() 
+		// Setup will call ft_validate_input and ft_prepare()
+		// Input is validated & prepared  if ft_setup returns 1
+		// ft_solve() 
+	}
+	else
+	{
+		ft_handle_error(2);
 	}
 
 	(void) argv;

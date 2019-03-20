@@ -1,24 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_start.c                                         :+:    :+:            */
+/*   ft_read_tetriminios.c                              :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: rlaros <rlaros@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/03/06 03:42:18 by rlaros         #+#    #+#                */
-/*   Updated: 2019/03/06 16:46:01 by rlaros        ########   odam.nl         */
+/*   Created: 2019/03/20 17:15:57 by rlaros         #+#    #+#                */
+/*   Updated: 2019/03/20 17:16:16 by rlaros        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-** @desc -
-** @param -
-** @var -
-*/
-
-#include "fillit.h"
-
-void	ft_start(void)
+void	ft_read_tetriminios(void)
 {
-	// TODO
+	
 }

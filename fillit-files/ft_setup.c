@@ -6,7 +6,7 @@
 /*   By: rlaros <rlaros@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/06 03:42:18 by rlaros         #+#    #+#                */
-/*   Updated: 2019/03/06 19:09:59 by rlaros        ########   odam.nl         */
+/*   Updated: 2019/03/20 17:20:33 by rlaros        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,12 @@
 
 #include "fillit.h"
 
-void	ft_setup(void)
+int	ft_setup(int argc, char **argv)
 {
-	// ft_validate()
-	// ft_configure()
+	
+	if (argc != 2)
+	{
+		ft_handle_error(1);
+	}
+	
 }
