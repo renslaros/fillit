@@ -6,7 +6,7 @@
 /*   By: renslaros <renslaros@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/20 17:15:57 by rlaros         #+#    #+#                */
-/*   Updated: 2019/03/21 14:20:29 by renslaros     ########   odam.nl         */
+/*   Updated: 2019/03/22 00:52:14 by renslaros     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,16 @@
 
 #include "fillit.h"
 
-int	ft_read_tetriminios(int **tetriminios, int fd)
+int	ft_read_tetriminios(int fd, int **tetriminios, int *tetri_count)
 {
 	char	*tetri_line;
+	int		tetri_count;
 	int		x;
 	int		y;
-	int		tetri_count;
 
+	tetri_count = 1;
 	x = 0;
 	y = 0;
-	tetri_count = 1;
 
 	if (fd < 0 || BUFF_SIZE < 1 || !tetri_input)
 		return (0);

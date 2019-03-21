@@ -6,7 +6,7 @@
 /*   By: renslaros <renslaros@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/06 03:42:18 by rlaros         #+#    #+#                */
-/*   Updated: 2019/03/21 14:21:55 by renslaros     ########   odam.nl         */
+/*   Updated: 2019/03/22 00:53:52 by renslaros     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 #include "fillit.h"
 
-int	ft_validate_tetriminios(int **tetriminios)
+int	ft_validate_tetriminios(int **tetriminios, int *tetri_count)
 {
 	//ft_validate_input_format()
 	//ft_validate_hashcount()
