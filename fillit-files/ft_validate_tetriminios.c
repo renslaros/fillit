@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_validate_input.c                                :+:    :+:            */
+/*   ft_validate_tetriminios.c                          :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: rlaros <rlaros@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/06 03:42:18 by rlaros         #+#    #+#                */
-/*   Updated: 2019/03/07 06:38:58 by rlaros        ########   odam.nl         */
+/*   Updated: 2019/03/21 12:10:09 by rlaros        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
-** @desc -
-** @param -
+** @desc - Validates the tetriminios stored by ft_read_tetriminios
+** @param - char ***tetriminios 3d Array representing all stored tetriminios
 ** @var -
 */
 
 #include "fillit.h"
 
-void	ft_validate_input(void)
+int	ft_validate_tetriminios(char ***tetriminios)
 {
-
-	// Todo
+	//ft_validate_input_format()
+	//ft_validate_hashcount()
+	//ft_validate_tetriminio_sides()
+	return (0);
 }

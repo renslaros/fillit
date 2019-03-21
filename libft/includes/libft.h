@@ -6,7 +6,7 @@
 /*   By: rlaros <rlaros@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/01/12 14:31:06 by lskrauci       #+#    #+#                */
-/*   Updated: 2019/03/05 22:22:16 by rlaros        ########   odam.nl         */
+/*   Updated: 2019/03/21 11:15:46 by rlaros        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 
 # ifndef GET_NEXT_LINE_H
 #  define GET_NEXT_LINE_H
-#  define BUFF_SIZE 50000
+#  define BUFF_SIZE 32
 #  define MAX_FD 4864
 #  define ENDL '\n'
 
