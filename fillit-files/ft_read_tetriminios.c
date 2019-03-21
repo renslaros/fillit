@@ -6,14 +6,14 @@
 /*   By: renslaros <renslaros@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/20 17:15:57 by rlaros         #+#    #+#                */
-/*   Updated: 2019/03/21 13:50:56 by renslaros     ########   odam.nl         */
+/*   Updated: 2019/03/21 14:20:29 by renslaros     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
 ** @desc - Reads all the tetriminios from given fd
 ** @desc - Stores the tetriminios into received 3d tetriminios array
-** @param - char ***tetri_input 3D array storing tetriminios with X & Y values
+** @param - int **tetriminios 3D array storing tetriminios with X & Y values
 ** @param - int fd - Filedescriptor to read tetriminios from
 ** @var - char *tetri_line Used to hold each line when reading from the GNL function
 ** @var 
@@ -23,7 +23,7 @@
 
 #include "fillit.h"
 
-int	ft_read_tetriminios(char ***tetri_input, int fd)
+int	ft_read_tetriminios(int **tetriminios, int fd)
 {
 	char	*tetri_line;
 	int		x;
@@ -42,7 +42,7 @@ int	ft_read_tetriminios(char ***tetri_input, int fd)
 		if (tetri_line[0] == '\0')
 			tetri_count++;
 		y++;
-		tetri_input[0][x][y] = 
+		//tetriminios[0[x,y] = 
 	}
 	return (0);
 }

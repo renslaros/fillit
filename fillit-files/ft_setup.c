@@ -6,7 +6,7 @@
 /*   By: renslaros <renslaros@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/06 03:42:18 by rlaros         #+#    #+#                */
-/*   Updated: 2019/03/21 14:09:07 by renslaros     ########   odam.nl         */
+/*   Updated: 2019/03/21 14:20:58 by renslaros     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,15 @@
 ** @param int argc - 
 ** @param char **argv - 
 ** @var int fd - filedescriptor pointing to tetriminio input received as argument
-** @var char **tetri_input - 3d Array storing the tetriminio input
+** @var int **tetriminios - 3d Array storing the tetriminio input
 */
 
 #include "fillit.h"
 
 int	ft_setup(int argc, char **argv)
 {
-	int 	fd;
-	char	***tetri_input;
+	int fd;
+	int	**tetriminios;
 
 	fd = open(argv[1], O_RDONLY);
 	
@@ -31,9 +31,9 @@ int	ft_setup(int argc, char **argv)
 	{
 		ft_handle_error(1);
 	}
-	if (ft_read_tetriminios(tetri_input, fd))
+	if (ft_read_tetriminios(tetriminios, fd))
 	{
-		if (ft_validate_tetriminios(tetri_input))
+		if (ft_validate_tetriminios(tetriminios))
 		{
 			close(fd);
 			return (1);
