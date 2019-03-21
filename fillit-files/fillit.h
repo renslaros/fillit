@@ -3,26 +3,52 @@
 /*                                                        ::::::::            */
 /*   fillit.h                                           :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: rlaros <rlaros@student.codam.nl>             +#+                     */
+/*   By: renslaros <renslaros@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/05 22:16:10 by rlaros         #+#    #+#                */
-/*   Updated: 2019/03/21 12:10:15 by rlaros        ########   odam.nl         */
+/*   Updated: 2019/03/21 13:57:57 by renslaros     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FILLIT_H
+/*
+** Defenitions
+*/
 # define FILLIT_H
 
+/*
+** Headers
+*/
 #include "../libft/includes/libft.h"
 #include <fcntl.h>
+
 /*
 ** ERROR MESSAGES
 */
 # define WRONG_USAGE "usage: ./fillit source_file\n"
 
-int		ft_setup(int argc, char **argv);
+/*
+** Errorr handlers
+*/
 void	ft_handle_error(int error_code);
-int		ft_read_tetriminios(char ***tetriminios, int fd);
-int		ft_validate_tetriminios(char ***tetriminios)
+
+/*
+** Fillit Setup
+*/
+
+int		ft_setup(int argc, char **argv);
+
+/*
+** Fillit Tetriminio input file reading
+*/
+int		ft_read_tetriminios(char ***tetri_input, int fd);
+
+/*
+** Input & Tetriminio Validation
+*/
+int		ft_validate_tetriminios(char ***tetri_input);
+int		ft_validate_input_format(char ***tetri_input);
+int		ft_validate_hashcount(char ***tetri_input);
+int		ft_validate_tetriminio_sides(char ***tetri_input);
 
 #endif

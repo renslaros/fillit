@@ -3,18 +3,18 @@
 /*                                                        ::::::::            */
 /*   fillit.c                                           :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: rlaros <rlaros@student.codam.nl>             +#+                     */
+/*   By: renslaros <renslaros@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/05 22:24:06 by rlaros         #+#    #+#                */
-/*   Updated: 2019/03/20 17:17:19 by rlaros        ########   odam.nl         */
+/*   Updated: 2019/03/21 13:59:54 by renslaros     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
 /*
-** @desc - Description of Main Function
-** @param int argc -
+** @desc - Validates & Fills tetriminios as the smallest possible square
+** @param int argc - A
 ** @param char **argv - 
 ** @var 
 ** @return 
