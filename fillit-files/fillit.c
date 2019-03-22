@@ -6,7 +6,7 @@
 /*   By: renslaros <renslaros@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/05 22:24:06 by rlaros         #+#    #+#                */
-/*   Updated: 2019/03/21 13:59:54 by renslaros     ########   odam.nl         */
+/*   Updated: 2019/03/22 00:50:18 by renslaros     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,10 @@
 
 int		main(int argc, char **argv)
 {
+	int	tetri_count;
 	
-	if (ft_setup(argc, argv) == 1)
+	tetri_count = 0;
+	if (ft_setup(argc, argv, &tetri_count) == 1)
 	{
 		// Setup will call ft_validate_input and ft_prepare()
 		// Input is validated & prepared  if ft_setup returns 1
