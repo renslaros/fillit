@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   ft_read_tetriminios.c                              :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: renslaros <renslaros@student.codam.nl>       +#+                     */
+/*   By: rlaros <rlaros@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/20 17:15:57 by rlaros         #+#    #+#                */
-/*   Updated: 2019/03/22 00:52:14 by renslaros     ########   odam.nl         */
+/*   Updated: 2019/03/22 06:37:55 by rlaros        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	ft_read_tetriminios(int fd, int **tetriminios, int *tetri_count)
 	x = 0;
 	y = 0;
 
-	if (fd < 0 || BUFF_SIZE < 1 || !tetri_input)
+	if (fd < 0 || BUFF_SIZE < 1 || !tetriminios)
 		return (0);
 
 	while (get_next_line(fd, &tetri_line) == 1)

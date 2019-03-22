@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   ft_setup.c                                         :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: renslaros <renslaros@student.codam.nl>       +#+                     */
+/*   By: rlaros <rlaros@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/06 03:42:18 by rlaros         #+#    #+#                */
-/*   Updated: 2019/03/22 00:53:34 by renslaros     ########   odam.nl         */
+/*   Updated: 2019/03/22 06:45:42 by rlaros        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,16 @@
 int	ft_setup(int argc, char **argv, int *tetri_count)
 {
 	int fd;
-	int	**tetriminios;
+	int	tetriminios[MAX_TETRIMINIOS + 1][9];
 
 	if (argc != 2)
 		ft_handle_error(1);
 	fd = open(argv[1], O_RDONLY);
-	if (ft_read_tetriminios(fd, tetriminios, tetri_count))
+	if (ft_read_tetriminios(fd, tetriminios, tetri_count) &&
+		ft_validate_tetriminios(tetriminios, tetri_count))
 	{
-		if (ft_validate_tetriminios(tetriminios, tetri_count))
-		{
-			close(fd);
-			return (1);
-		}
+		close(fd);
+		return (1);
 	}
 	close(fd);
 	return (0);
