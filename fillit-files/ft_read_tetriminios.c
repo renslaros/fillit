@@ -6,7 +6,7 @@
 /*   By: renslaros <renslaros@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/20 17:15:57 by rlaros         #+#    #+#                */
-/*   Updated: 2019/03/22 00:52:14 by renslaros     ########   odam.nl         */
+/*   Updated: 2019/03/26 14:02:24 by renslaros     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int	ft_read_tetriminios(int fd, int **tetriminios, int *tetri_count)
 
 	while (get_next_line(fd, &tetri_line) == 1)
 	{
+		
 		if (tetri_line[0] == '\0')
 			tetri_count++;
 		y++;
