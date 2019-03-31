@@ -6,7 +6,7 @@
 /*   By: renslaros <renslaros@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/21 13:48:59 by renslaros      #+#    #+#                */
-/*   Updated: 2019/03/31 07:47:09 by renslaros     ########   odam.nl         */
+/*   Updated: 2019/03/31 07:50:07 by renslaros     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,7 @@ static int	ft_validate_tetriminio_line_hashes(char *tetri_line, int line_count)
 		return (1);
 	return (0);
 }
-5 line_count % 5 > 0 ? (line_count / 5) + 1 : line_count / 5
-7
-9
-10
-11
+
 
 
 /*

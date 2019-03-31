@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   fillit.c                                           :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: rlaros <rlaros@student.codam.nl>             +#+                     */
+/*   By: renslaros <renslaros@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/05 22:24:06 by rlaros         #+#    #+#                */
-/*   Updated: 2019/03/31 04:28:30 by rlaros        ########   odam.nl         */
+/*   Updated: 2019/03/31 07:57:24 by renslaros     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,9 @@ int		main(int argc, char **argv)
 	int	tcount;
 	
 	tcount = 1;
-	if (tetriminios && ft_setup(argc, argv, tetriminios, &tcount))
+	if (argc != 2)
+		ft_handle_error(1);
+	if (tetriminios && ft_setup(argv, tetriminios, &tcount))
 	{
 		ft_solve();
 	}
