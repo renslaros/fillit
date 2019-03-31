@@ -3,25 +3,20 @@
 /*                                                        ::::::::            */
 /*   ft_save_and_validate_tetriminios.c                 :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: renslaros <renslaros@student.codam.nl>       +#+                     */
+/*   By: rlaros <rlaros@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/26 16:03:58 by renslaros      #+#    #+#                */
-/*   Updated: 2019/03/29 17:54:34 by renslaros     ########   odam.nl         */
+/*   Updated: 2019/03/31 04:38:00 by rlaros        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-** @desc - Reads and validates all the tetriminios from given input
-** @desc - Stores the tetriminios into received 3d tetriminios array
-** @param - int **tetriminios 3D array storing tetriminios with X & Y values
-** @param - int fd - Filedescriptor to read tetriminios from
-** @var - char *tetri_line Used to hold each line when reading from the GNL function
-** @var 
-** return - int 0 if reading went unsuccessfull
-** return - int 1 if reading was successfull
-*/
-
 #include "fillit.h"
+
+/*
+** @desc -
+** @param -
+** @var -
+*/
 
 static void ft_update_tetri_count(int *tetri_count, int y)
 {
@@ -30,8 +25,18 @@ static void ft_update_tetri_count(int *tetri_count, int y)
 	else
 		*tetri_count = ((y + 1) / 5) + 1;
 }
+/*
+** @desc - Reads and validates all the tetriminios from given input
+** @desc - Stores the tetriminios into received 3d tetriminios array
+** @param - int **tetriminios 3D array storing tetriminios with X & Y values
+** @param - int fd - Filedescriptor to read tetriminios from
+** @var char *tetri_line - line holder passed to GNL
+** @var int y - row counter
+** return - int 0 if reading went unsuccessfull
+** return - int 1 if reading was successfull
+*/
 
-int	ft_save_and_validate_tetriminios(int fd, int **tetriminios, int *tetri_count)
+int	ft_save_and_validate_tetriminios(int fd, int **tetriminios, int *tcount)
 {
 	char	*tetri_line;
 	int		y;
@@ -45,8 +50,8 @@ int	ft_save_and_validate_tetriminios(int fd, int **tetriminios, int *tetri_count
 	{
 		if (ft_validate_tetriminio_line(tetri_line, y))
 		{
-			if (ft_save_hash_positions(tetriminios, tetri_line, y, tetri_count))
-				ft_update_tetri_count(tetri_count, y);
+			if (ft_save_hash_positions(tetriminios, tetri_line, y, tcount))
+				ft_update_tetri_count(tcount, y);
 			else
 				return (0);
 		}
@@ -54,9 +59,7 @@ int	ft_save_and_validate_tetriminios(int fd, int **tetriminios, int *tetri_count
 			return (0);
 		y++;
 	}
+	if (ft_validate_tetriminio_sides(tetriminios))
+		return (1);
 	return (0);
 }
-	int **tetriminios, 
-	char *tetri_line, 
-	int y, 
-	int *tetri_cou

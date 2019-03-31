@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   ft_validate_tetriminio_sides.c                     :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: renslaros <renslaros@student.codam.nl>       +#+                     */
+/*   By: rlaros <rlaros@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/06 03:42:18 by rlaros         #+#    #+#                */
-/*   Updated: 2019/03/29 04:09:58 by renslaros     ########   odam.nl         */
+/*   Updated: 2019/03/31 04:38:24 by rlaros        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 #include "fillit.h"
 
-int	ft_validate_tetriminio_sides(int **tetriminios, int *tetri_count)
+int	ft_validate_tetriminio_sides(int **tetriminios)
 {
 	return (0);
 }

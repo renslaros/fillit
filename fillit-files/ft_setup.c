@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   ft_setup.c                                         :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: renslaros <renslaros@student.codam.nl>       +#+                     */
+/*   By: rlaros <rlaros@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/06 03:42:18 by rlaros         #+#    #+#                */
-/*   Updated: 2019/03/29 17:59:19 by renslaros     ########   odam.nl         */
+/*   Updated: 2019/03/31 04:28:22 by rlaros        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 #include "fillit.h"
 
-int	ft_setup(int argc, char **argv, int **tetriminios, int *tetri_count)
+int	ft_setup(int argc, char **argv, int **tetriminios, int *tcount)
 {
 	int fd;
 
@@ -28,7 +28,7 @@ int	ft_setup(int argc, char **argv, int **tetriminios, int *tetri_count)
 		ft_handle_error(1);
 	
 	fd = open(argv[1], O_RDONLY);
-	if (ft_save_and_validate_tetriminios(fd, tetriminios, tetri_count))
+	if (ft_save_and_validate_tetriminios(fd, tetriminios, tcount))
 	{
 		close(fd);
 		return (1);

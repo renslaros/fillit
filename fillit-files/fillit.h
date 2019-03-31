@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   fillit.h                                           :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: renslaros <renslaros@student.codam.nl>       +#+                     */
+/*   By: rlaros <rlaros@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/05 22:16:10 by rlaros         #+#    #+#                */
-/*   Updated: 2019/03/29 04:35:46 by renslaros     ########   odam.nl         */
+/*   Updated: 2019/03/31 04:38:12 by rlaros        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,17 @@ void	ft_handle_error(int error_code);
 ** Fillit Setup
 */
 
-int		ft_setup(int argc, char **argv, int *tetri_count);
+int		ft_setup(int argc, char **argv, int *tcount);
 
 /*
 ** Fillit Tetriminio input file reading and validation
 */
-int		ft_save_and_validate_tetriminios(int fd, int **tetriminios, int *tetri_count);
+int		ft_save_and_validate_tetriminios(int fd, int **tetriminios, int *tcount);
 
 /*
 ** Input & Tetriminio Validation
 */
-int		ft_validate_tetriminio_sides(int **tetriminios, int *tetri_count);
+int		ft_validate_tetriminio_sides(int **tetriminios);
 int		ft_validate_tetriminio_line(char *tetri_line, int y);
 
 
