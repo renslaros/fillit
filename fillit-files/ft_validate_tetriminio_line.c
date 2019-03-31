@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   ft_validate_tetriminio_line.c                      :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: renslaros <renslaros@student.codam.nl>       +#+                     */
+/*   By: rlaros <rlaros@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/21 13:48:59 by renslaros      #+#    #+#                */
-/*   Updated: 2019/03/29 04:34:48 by renslaros     ########   odam.nl         */
+/*   Updated: 2019/03/31 04:50:14 by rlaros        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,21 @@
 ** @var -
 */
 
-static int ft_validate_tetriminio_line_hashes(char *tetri_line, int line_count)
+static int	ft_validate_tetriminio_line_hashes(char *tetri_line, int line_count)
+{
+	static int	hashcount;
+
+	if (!hashcount)
+		hashcount = 0;
+	while (*tetri_line)
+	{
+		if (*tetri_line == '#')
+		{
+			// increase hashcount. Check if hashcount is < MAX_HASHES depending on received linecount input
+		}
+	}	
+	return (0);
+}
 
 /*
 ** @desc -
@@ -26,7 +40,7 @@ static int ft_validate_tetriminio_line_hashes(char *tetri_line, int line_count)
 ** @var -
 */
 
-static int ft_validate_tetriminio_line_length(char *tetri_line, int line_count)
+static int	ft_validate_tetriminio_line_length(char *tetri_line, int line_count)
 {
 	if (ft_strlen(tetri_line) == 4)
 		return (1);
@@ -41,16 +55,10 @@ static int ft_validate_tetriminio_line_length(char *tetri_line, int line_count)
 ** @var -
 */
 
-int ft_validate_tetriminio_line(char *tetri_line, int y)
+int			ft_validate_tetriminio_line(char *tetri_line, int y)
 {
-	int	i;
-	int	x;
-
-	int i = 0;
-	int x = 0;
-	
 	if (ft_validate_tetriminio_line_length(tetri_line, (y + 1)) &&
-		ft_validate_tetriminio_line_hashes(tetri_line, (y + 1)) )
+		ft_validate_tetriminio_line_hashes(tetri_line, (y + 1)))
 		return (1);
 	return (0);
 }
