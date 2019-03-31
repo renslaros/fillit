@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   ft_validate_tetriminio_line.c                      :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: rlaros <rlaros@student.codam.nl>             +#+                     */
+/*   By: renslaros <renslaros@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/21 13:48:59 by renslaros      #+#    #+#                */
-/*   Updated: 2019/03/31 04:50:14 by rlaros        ########   odam.nl         */
+/*   Updated: 2019/03/31 07:47:09 by renslaros     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,26 @@
 static int	ft_validate_tetriminio_line_hashes(char *tetri_line, int line_count)
 {
 	static int	hashcount;
+	int			allowed_hashes;
 
 	if (!hashcount)
 		hashcount = 0;
 	while (*tetri_line)
 	{
 		if (*tetri_line == '#')
-		{
-			// increase hashcount. Check if hashcount is < MAX_HASHES depending on received linecount input
-		}
-	}	
+			hashcount++;
+	}
+	allowed_hashes = line_count % 5 > 0 ? ((line_count / 5) + 1 * 4 : (line_count / 5) * 4;
+	if (hashcount <= allowed_hashes)
+		return (1);
 	return (0);
 }
+5 line_count % 5 > 0 ? (line_count / 5) + 1 : line_count / 5
+7
+9
+10
+11
+
 
 /*
 ** @desc -
