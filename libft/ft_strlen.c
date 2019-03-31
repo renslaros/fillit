@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   ft_strlen.c                                        :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: rlaros <rlaros@student.codam.nl>             +#+                     */
+/*   By: renslaros <renslaros@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/01/16 14:17:06 by rlaros         #+#    #+#                */
-/*   Updated: 2019/01/28 01:41:12 by rlaros        ########   odam.nl         */
+/*   Updated: 2019/03/26 15:29:46 by renslaros     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,3 +23,4 @@ size_t				ft_strlen(const char *str)
 	}
 	return (i);
 }
+abc

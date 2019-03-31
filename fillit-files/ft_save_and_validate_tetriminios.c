@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_read_tetriminios.c                              :+:    :+:            */
+/*   ft_save_and_validate_tetriminios.c                 :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: renslaros <renslaros@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/03/20 17:15:57 by rlaros         #+#    #+#                */
-/*   Updated: 2019/03/26 14:02:24 by renslaros     ########   odam.nl         */
+/*   Created: 2019/03/26 16:03:58 by renslaros      #+#    #+#                */
+/*   Updated: 2019/03/29 17:54:34 by renslaros     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
-** @desc - Reads all the tetriminios from given fd
+** @desc - Reads and validates all the tetriminios from given input
 ** @desc - Stores the tetriminios into received 3d tetriminios array
 ** @param - int **tetriminios 3D array storing tetriminios with X & Y values
 ** @param - int fd - Filedescriptor to read tetriminios from
@@ -23,27 +23,40 @@
 
 #include "fillit.h"
 
-int	ft_read_tetriminios(int fd, int **tetriminios, int *tetri_count)
+static void ft_update_tetri_count(int *tetri_count, int y)
+{
+	if ((y + 1) % 5 == 0 )
+		*tetri_count = (y + 1) / 5;
+	else
+		*tetri_count = ((y + 1) / 5) + 1;
+}
+
+int	ft_save_and_validate_tetriminios(int fd, int **tetriminios, int *tetri_count)
 {
 	char	*tetri_line;
-	int		tetri_count;
-	int		x;
 	int		y;
 
-	tetri_count = 1;
-	x = 0;
 	y = 0;
 
-	if (fd < 0 || BUFF_SIZE < 1 || !tetri_input)
+	if (fd < 0 || BUFF_SIZE < 1 || !tetriminios)
 		return (0);
 
-	while (get_next_line(fd, &tetri_line) == 1)
+	while (get_next_line(fd, tetri_line) == 1)
 	{
-		
-		if (tetri_line[0] == '\0')
-			tetri_count++;
+		if (ft_validate_tetriminio_line(tetri_line, y))
+		{
+			if (ft_save_hash_positions(tetriminios, tetri_line, y, tetri_count))
+				ft_update_tetri_count(tetri_count, y);
+			else
+				return (0);
+		}
+		else
+			return (0);
 		y++;
-		//tetriminios[0[x,y] = 
 	}
 	return (0);
 }
+	int **tetriminios, 
+	char *tetri_line, 
+	int y, 
+	int *tetri_cou

@@ -6,7 +6,7 @@
 /*   By: renslaros <renslaros@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/05 22:24:06 by rlaros         #+#    #+#                */
-/*   Updated: 2019/03/22 00:50:18 by renslaros     ########   odam.nl         */
+/*   Updated: 2019/03/29 04:23:03 by renslaros     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,13 @@
 
 int		main(int argc, char **argv)
 {
+	int	tetriminios[MAX_TETRIMINIOS + 1][9];
 	int	tetri_count;
 	
-	tetri_count = 0;
-	if (ft_setup(argc, argv, &tetri_count) == 1)
+	tetri_count = 1;
+	if (tetriminios && ft_setup(argc, argv, tetriminios, &tetri_count))
 	{
-		// Setup will call ft_validate_input and ft_prepare()
-		// Input is validated & prepared  if ft_setup returns 1
-		// ft_solve() 
+		ft_solve();
 	}
 	else
 	{
