@@ -6,19 +6,23 @@
 /*   By: renslaros <renslaros@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/21 13:48:59 by renslaros      #+#    #+#                */
-/*   Updated: 2019/03/31 07:50:07 by renslaros     ########   odam.nl         */
+/*   Updated: 2019/03/31 19:06:32 by renslaros     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
 /*
-** @desc -
-** @param -
-** @var -
+** @desc - Validates static hashcount against allowed_hashes 
+** @param char *tetri_line -
+** @param int lines -
+** @var static int hashcount -
+** @var int allowed_hashes -
+** return int 1 if valid
+** return int 0 if invalid
 */
 
-static int	ft_validate_tetriminio_line_hashes(char *tetri_line, int line_count)
+static int	ft_validate_tetriminio_line_hashes(char *tetri_line, int lines)
 {
 	static int	hashcount;
 	int			allowed_hashes;
@@ -30,33 +34,36 @@ static int	ft_validate_tetriminio_line_hashes(char *tetri_line, int line_count)
 		if (*tetri_line == '#')
 			hashcount++;
 	}
-	allowed_hashes = line_count % 5 > 0 ? ((line_count / 5) + 1 * 4 : (line_count / 5) * 4;
+	allowed_hashes = lines % 5 > 0 ? ((lines / 5) + 1 * 4 : (lines / 5) * 4;
 	if (hashcount <= allowed_hashes)
 		return (1);
 	return (0);
 }
 
-
-
 /*
-** @desc -
-** @param -
-** @var -
+** @desc - Validates the tetri_line length. Taking \n Seperators into account
+** @desc - Validates static hashcount against allowed_hashes 
+** @param char *tetri_line -
+** @param int lines -
+** return int 1 if valid
+** return int 0 if invalid
 */
 
-static int	ft_validate_tetriminio_line_length(char *tetri_line, int line_count)
+static int	ft_validate_tetriminio_line_length(char *tetri_line, int lines)
 {
 	if (ft_strlen(tetri_line) == 4)
 		return (1);
-	if (line_count % 5 == 0 && tetri_line[0] == '\0')
+	if (lines % 5 == 0 && tetri_line[0] == '\0')
 		return (1);
 	return (0);
 }
 
 /*
-** @desc -
-** @param -
-** @var -
+** @desc - Validates the given tetri_line based on current row
+** @param char *tetri_line -
+** @param int y -
+** return int 1 if valid
+** return int 0 if invalid
 */
 
 int			ft_validate_tetriminio_line(char *tetri_line, int y)
