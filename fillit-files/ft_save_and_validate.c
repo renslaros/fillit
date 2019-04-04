@@ -6,7 +6,7 @@
 /*   By: rlaros <rlaros@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/26 16:03:58 by renslaros      #+#    #+#                */
-/*   Updated: 2019/03/31 04:38:00 by rlaros        ########   odam.nl         */
+/*   Updated: 2019/04/01 20:39:45 by rlaros        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,14 @@
 ** @var -
 */
 
-static void ft_update_tetri_count(int *tetri_count, int y)
+static void	ft_update_tetri_count(int *tetri_count, int y)
 {
-	if ((y + 1) % 5 == 0 )
+	if ((y + 1) % 5 == 0)
 		*tetri_count = (y + 1) / 5;
 	else
 		*tetri_count = ((y + 1) / 5) + 1;
 }
+
 /*
 ** @desc - Reads and validates all the tetriminios from given input
 ** @desc - Stores the tetriminios into received 3d tetriminios array
@@ -36,7 +37,7 @@ static void ft_update_tetri_count(int *tetri_count, int y)
 ** return - int 1 if reading was successfull
 */
 
-int	ft_save_and_validate_tetriminios(int fd, int **tetriminios, int *tcount)
+int			ft_save_and_validate(int fd, int **tetriminios, int *tcount)
 {
 	char	*tetri_line;
 	int		y;

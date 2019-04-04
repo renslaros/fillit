@@ -3,17 +3,17 @@
 /*                                                        ::::::::            */
 /*   ft_validate_tetriminio_line.c                      :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: renslaros <renslaros@student.codam.nl>       +#+                     */
+/*   By: rlaros <rlaros@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/21 13:48:59 by renslaros      #+#    #+#                */
-/*   Updated: 2019/03/31 19:06:32 by renslaros     ########   odam.nl         */
+/*   Updated: 2019/04/01 21:01:26 by rlaros        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
 /*
-** @desc - Validates static hashcount against allowed_hashes 
+** @desc - Validates static hashcount against allowed_hashes
 ** @param char *tetri_line -
 ** @param int lines -
 ** @var static int hashcount -
@@ -34,7 +34,7 @@ static int	ft_validate_tetriminio_line_hashes(char *tetri_line, int lines)
 		if (*tetri_line == '#')
 			hashcount++;
 	}
-	allowed_hashes = lines % 5 > 0 ? ((lines / 5) + 1 * 4 : (lines / 5) * 4;
+	allowed_hashes = (lines % 5) > 0 ? ((lines / 5) + 1 * 4) : (lines / 5) * 4;
 	if (hashcount <= allowed_hashes)
 		return (1);
 	return (0);
@@ -42,7 +42,7 @@ static int	ft_validate_tetriminio_line_hashes(char *tetri_line, int lines)
 
 /*
 ** @desc - Validates the tetri_line length. Taking \n Seperators into account
-** @desc - Validates static hashcount against allowed_hashes 
+** @desc - Validates static hashcount against allowed_hashes
 ** @param char *tetri_line -
 ** @param int lines -
 ** return int 1 if valid
@@ -58,6 +58,24 @@ static int	ft_validate_tetriminio_line_length(char *tetri_line, int lines)
 	return (0);
 }
 
+static int	ft_validate_tetriminio_line_chars(char *tetri_line, int lines)
+{
+	int i;
+
+	i = 0;
+	if (lines % 5 == 0 && tetri_line[0] == '\0')
+		return (1);
+	while (tetri_line[i] != '\0')
+	{
+		if (tetri_line[i] != '#' || tetri_line[i] != '.')
+			return (0);
+		i++;
+	}
+	if (tetri_line[i] == '\0' && tetri_line[0] != '\0')
+		return (1);
+	return (0);
+}
+
 /*
 ** @desc - Validates the given tetri_line based on current row
 ** @param char *tetri_line -
@@ -69,7 +87,8 @@ static int	ft_validate_tetriminio_line_length(char *tetri_line, int lines)
 int			ft_validate_tetriminio_line(char *tetri_line, int y)
 {
 	if (ft_validate_tetriminio_line_length(tetri_line, (y + 1)) &&
-		ft_validate_tetriminio_line_hashes(tetri_line, (y + 1)))
+		ft_validate_tetriminio_line_hashes(tetri_line, (y + 1)) &&
+		ft_validate_tetriminio_line_chars(tetri_line, (y + 1)))
 		return (1);
 	return (0);
 }
