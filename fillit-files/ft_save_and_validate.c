@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_save_and_validate_tetriminios.c                 :+:    :+:            */
+/*   ft_save_and_validate.c                             :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: renslaros <renslaros@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/03/26 16:03:58 by renslaros      #+#    #+#                */
-/*   Updated: 2019/04/04 17:15:53 by renslaros     ########   odam.nl         */
+/*   Created: 2019/04/05 08:11:51 by renslaros      #+#    #+#                */
+/*   Updated: 2019/04/05 08:11:53 by renslaros     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,14 @@
 ** @var -
 */
 
-static void ft_update_tetri_count(int *tetri_count, int y)
+static void	ft_update_tetri_count(int *tetri_count, int y)
 {
-	if ((y + 1) % 5 == 0 )
+	if ((y + 1) % 5 == 0)
 		*tetri_count = (y + 1) / 5;
 	else
 		*tetri_count = ((y + 1) / 5) + 1;
 }
+
 /*
 ** @desc - Reads and validates all the tetriminios from given input
 ** @desc - Stores the tetriminios into received 3d tetriminios array
@@ -36,21 +37,21 @@ static void ft_update_tetri_count(int *tetri_count, int y)
 ** return - int 1 if reading was successfull
 */
 
-int	ft_save_and_validate_tetriminios(int fd, int **tetriminios, int *tcount)
+int			ft_save_and_validate(int fd, int **tetriminos, int *tcount)
 {
 	char	*tetri_line;
 	int		y;
 
 	y = 0;
 
-	if (fd < 0 || BUFF_SIZE < 1 || !tetriminios)
+	if (fd < 0 || BUFF_SIZE < 1 || !tetriminos)
 		return (0);
 
 	while (get_next_line(fd, tetri_line) == 1)
 	{
-		if (ft_validate_tetriminio_line(tetri_line, y))
+		if (ft_validate_line(tetri_line, y))
 		{
-			if (ft_save_hash_positions(tetriminios, tetri_line, y, tcount))
+			if (ft_save_hash_positions(tetriminos, tetri_line, y, tcount))
 				ft_update_tetri_count(tcount, y);
 			else
 				return (0);
@@ -59,7 +60,7 @@ int	ft_save_and_validate_tetriminios(int fd, int **tetriminios, int *tcount)
 			return (0);
 		y++;
 	}
-	if (ft_validate_tetriminio_sides(tetriminios))
+	if (ft_validate_tetriminos(tetriminos, tcount))
 		return (1);
 	return (0);
 }
