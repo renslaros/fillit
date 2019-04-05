@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   fillit.h                                           :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: rlaros <rlaros@student.codam.nl>             +#+                     */
+/*   By: renslaros <renslaros@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/05 22:16:10 by rlaros         #+#    #+#                */
-/*   Updated: 2019/04/05 03:35:52 by rlaros        ########   odam.nl         */
+/*   Updated: 2019/04/05 08:53:26 by renslaros     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int		ft_save_and_validate(int fd, int **tetriminos, int *tcount);
 
 int		ft_validate_line(char *tetri_line, int y);
 int		ft_validate_tetriminos(int **tetriminos, int tcount);
-int		ft_save_hash_positions(
+void	ft_save_hash_positions(
 	int **tetriminos,
 	char *tetri_line,
 	int y,

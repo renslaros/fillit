@@ -6,13 +6,13 @@
 /*   By: renslaros <renslaros@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/05 08:11:23 by renslaros      #+#    #+#                */
-/*   Updated: 2019/04/05 08:11:24 by renslaros     ########   odam.nl         */
+/*   Updated: 2019/04/05 08:53:02 by renslaros     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int	ft_save_hash_positions(
+void	ft_save_hash_positions(
 	int **tetriminos,
 	char *tetri_line,
 	int y,
@@ -40,6 +40,6 @@ int	ft_save_hash_positions(
 		else if (tetri_line[x] != '#' && tetri_line[x] == '.')
 			x++;
 		else
-			return (0);
+			ft_handle_error(2);
 	}
 }

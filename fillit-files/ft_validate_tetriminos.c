@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   ft_validate_tetriminos.c                           :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: rlaros <rlaros@student.codam.nl>             +#+                     */
+/*   By: renslaros <renslaros@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/06 03:42:18 by rlaros         #+#    #+#                */
-/*   Updated: 2019/04/05 06:42:30 by rlaros        ########   odam.nl         */
+/*   Updated: 2019/04/05 09:17:42 by renslaros     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,32 +18,24 @@
 ** @var -
 */
 
-static int	ft_get_h_connections(int *t, int x, int y, int hashnbr)
+static int	ft_get_x_connections(int *t, int x, int y, int hashnbr)
 {
-	int h_matches;
+	int x_connections;
 	int i;
 
-	h_matches = 0;
+	x_connections = 0;
 	i = 0;
 	while (t[i] && i <= 6)
 	{
-		if ((i / 2) + 1 != hashnbr)
+		if ((i / 2) + 1 != hashnbr && t[i + 1] == y)
 		{
-			if (t[i + 1] == y)
-			{
-				if (t[i] == x || t[i] == (x + 1))
-				{
-					h_matches++;
-				}
-				else if (t[i] == (x - 1) && (x - 1) >= 0)
-				{
-					h_matches++;
-				}
-			}
+			if ((t[i] == x || t[i] == (x + 1)) ||
+				(t[i] == (x - 1) && (x - 1) >= 0))
+				x_connections++;
 		}
 		i += 2;
 	}
-	return (0);
+	return (x_connections);
 }
 
 /*
@@ -52,16 +44,24 @@ static int	ft_get_h_connections(int *t, int x, int y, int hashnbr)
 ** @var -
 */
 
-static int	ft_get_v_side_count(int *tetriminos, int x, int y, int hashnbr)
+static int	ft_get_y_connections(int *tetriminos, int x, int y, int hashnbr)
 {
-	int v_matches;
+	int y_connections;
 	int i;
 
-	v_matches = 0;
+	y_connections = 0;
 	i = 0;
-	while (tetriminos[i])
+	while (t[i] && i <= 6)
+	{
+		if ((i / 2) + 1 != hashnbr && t[i] == x)
+		{
+			if ((t[i + 1] == y || t[i + 1] == (y + 1)) || 
+				(t[i + 1] == (y - 1) && (y - 1) >= 0))
+				y_connections++;
+		}
 		i += 2;
-	return (0);
+	}
+	return (y_connections);
 }
 
 /*
@@ -74,8 +74,10 @@ static int	ft_get_side_count(int *tetriminos, int x, int y, int hashnbr)
 {
 	int sides;
 
-	sides = ft_get_h_connections(tetriminos, x, y, hashnbr);
-	sides += ft_get_v_connections(tetriminos, x, y, hashnbr);
+	sides = ft_get_x_connections(tetriminos, x, y, hashnbr);
+	sides += ft_get_y_connections(tetriminos, x, y, hashnbr);
+	if (sides == 0)
+		ft_handle_error(2);
 	return (sides);
 }
 
@@ -107,8 +109,12 @@ int			ft_validate_tetriminos(int **t, int tcount)
 		}
 
 		if (sides != 6 && sides != 8)
-			return (0);
+			ft_handle_error(2);
+		sides = 0;
+		j = 0;
 		i++;
 	}
+	if ((i + 1) == tcount)
+		return (1);
 	return (0);
 }

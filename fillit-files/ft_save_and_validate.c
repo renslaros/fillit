@@ -6,7 +6,7 @@
 /*   By: renslaros <renslaros@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/05 08:11:51 by renslaros      #+#    #+#                */
-/*   Updated: 2019/04/05 08:11:53 by renslaros     ########   odam.nl         */
+/*   Updated: 2019/04/05 08:51:44 by renslaros     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,8 @@ int			ft_save_and_validate(int fd, int **tetriminos, int *tcount)
 	{
 		if (ft_validate_line(tetri_line, y))
 		{
-			if (ft_save_hash_positions(tetriminos, tetri_line, y, tcount))
-				ft_update_tetri_count(tcount, y);
-			else
-				return (0);
+			ft_save_hash_positions(tetriminos, tetri_line, y, tcount);
+			ft_update_tetri_count(tcount, y);
 		}
 		else
 			return (0);
