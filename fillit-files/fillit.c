@@ -6,7 +6,7 @@
 /*   By: rlaros <rlaros@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/05 22:24:06 by rlaros         #+#    #+#                */
-/*   Updated: 2019/04/01 21:59:05 by rlaros        ########   odam.nl         */
+/*   Updated: 2019/04/05 05:11:06 by rlaros        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 int		main(int argc, char **argv)
 {
-	int	tetriminios[MAX_TETRIMINIOS + 1][9];
+	int	tetriminios[MAX_TETRIMINOS][8];
 	int	tcount;
 	
 	tcount = 1;

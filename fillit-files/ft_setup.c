@@ -6,7 +6,7 @@
 /*   By: rlaros <rlaros@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/06 03:42:18 by rlaros         #+#    #+#                */
-/*   Updated: 2019/04/01 21:35:31 by rlaros        ########   odam.nl         */
+/*   Updated: 2019/04/05 03:36:15 by rlaros        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@
 
 #include "fillit.h"
 
-int	ft_setup(char **argv, int **tetriminios, int *tcount)
+int	ft_setup(char **argv, int **tetriminos, int *tcount)
 {
 	int fd;
 
 	fd = open(argv[1], O_RDONLY);
-	if (ft_save_and_validate_tetriminios(fd, tetriminios, tcount))
+	if (ft_save_and_validate(fd, tetriminos, tcount))
 	{
 		close(fd);
 		return (1);

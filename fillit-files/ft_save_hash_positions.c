@@ -6,17 +6,17 @@
 /*   By: rlaros <rlaros@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/26 19:37:48 by renslaros      #+#    #+#                */
-/*   Updated: 2019/03/31 04:42:44 by rlaros        ########   odam.nl         */
+/*   Updated: 2019/04/05 03:58:05 by rlaros        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
 int	ft_save_hash_positions(
-	int **tetriminios,
+	int **tetriminos,
 	char *tetri_line,
 	int y,
-	int *tcount
+	int tcount
 )
 {
 	int x;
@@ -24,13 +24,16 @@ int	ft_save_hash_positions(
 
 	x = 0;
 	i = 0;
+	if (y >= 129)
+		return (0);
+	y = y % 5;
 	while (tetri_line[x])
 	{
-		if (tetri_line[x] == '#' && tetriminios[*tcount - 1][i]
-			&& tetriminios[*tcount - 1][i + 1])
+		if (tetri_line[x] == '#' && tetriminos[tcount - 1][i]
+			&& tetriminos[tcount - 1][i + 1])
 		{
-			tetriminios[*tcount - 1][i] = x;
-			tetriminios[*tcount - 1][i + 1] = y;
+			tetriminos[tcount - 1][i] = x;
+			tetriminos[tcount - 1][i + 1] = y;
 			i += 2;
 			x++;
 		}

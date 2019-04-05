@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_validate_tetriminio_line.c                      :+:    :+:            */
+/*   ft_validate_line.c                                 :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: rlaros <rlaros@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/21 13:48:59 by renslaros      #+#    #+#                */
-/*   Updated: 2019/04/01 21:01:26 by rlaros        ########   odam.nl         */
+/*   Updated: 2019/04/05 06:12:03 by rlaros        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 /*
 ** @desc - Validates static hashcount against allowed_hashes
-** @param char *tetri_line -
-** @param int lines -
+** @param char *tetri_line - single line part of tetrimino
+** @param int lines - number of lines
 ** @var static int hashcount -
 ** @var int allowed_hashes -
 ** return int 1 if valid
 ** return int 0 if invalid
 */
 
-static int	ft_validate_tetriminio_line_hashes(char *tetri_line, int lines)
+static int	ft_validate_line_hashes(char *tetri_line, int lines)
 {
 	static int	hashcount;
 	int			allowed_hashes;
@@ -41,15 +41,14 @@ static int	ft_validate_tetriminio_line_hashes(char *tetri_line, int lines)
 }
 
 /*
-** @desc - Validates the tetri_line length. Taking \n Seperators into account
-** @desc - Validates static hashcount against allowed_hashes
-** @param char *tetri_line -
-** @param int lines -
+** @desc - Validates the tetri_line length.
+** @param char *tetri_line - single line part of tetrimino
+** @param int lines - number of lines
 ** return int 1 if valid
 ** return int 0 if invalid
 */
 
-static int	ft_validate_tetriminio_line_length(char *tetri_line, int lines)
+static int	ft_validate_line_length(char *tetri_line, int lines)
 {
 	if (ft_strlen(tetri_line) == 4)
 		return (1);
@@ -58,7 +57,15 @@ static int	ft_validate_tetriminio_line_length(char *tetri_line, int lines)
 	return (0);
 }
 
-static int	ft_validate_tetriminio_line_chars(char *tetri_line, int lines)
+/*
+** @desc - Validates the tetri_line characters
+** @param char *tetri_line - single line part of tetrimino
+** @param int lines - number of lines
+** return int 1 if valid
+** return int 0 if invalid
+*/
+
+static int	ft_validate_line_chars(char *tetri_line, int lines)
 {
 	int i;
 
@@ -84,11 +91,11 @@ static int	ft_validate_tetriminio_line_chars(char *tetri_line, int lines)
 ** return int 0 if invalid
 */
 
-int			ft_validate_tetriminio_line(char *tetri_line, int y)
+int			ft_validate_line(char *tetri_line, int y)
 {
-	if (ft_validate_tetriminio_line_length(tetri_line, (y + 1)) &&
-		ft_validate_tetriminio_line_hashes(tetri_line, (y + 1)) &&
-		ft_validate_tetriminio_line_chars(tetri_line, (y + 1)))
+	if (ft_validate_line_length(tetri_line, (y + 1)) &&
+		ft_validate_line_hashes(tetri_line, (y + 1)) &&
+		ft_validate_line_chars(tetri_line, (y + 1)))
 		return (1);
 	return (0);
 }

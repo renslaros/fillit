@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_save_and_validate_tetriminios.c                 :+:    :+:            */
+/*   ft_save_and_validate.c                             :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: rlaros <rlaros@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/26 16:03:58 by renslaros      #+#    #+#                */
-/*   Updated: 2019/04/01 20:39:45 by rlaros        ########   odam.nl         */
+/*   Updated: 2019/04/05 03:36:40 by rlaros        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,21 +37,21 @@ static void	ft_update_tetri_count(int *tetri_count, int y)
 ** return - int 1 if reading was successfull
 */
 
-int			ft_save_and_validate(int fd, int **tetriminios, int *tcount)
+int			ft_save_and_validate(int fd, int **tetriminos, int *tcount)
 {
 	char	*tetri_line;
 	int		y;
 
 	y = 0;
 
-	if (fd < 0 || BUFF_SIZE < 1 || !tetriminios)
+	if (fd < 0 || BUFF_SIZE < 1 || !tetriminos)
 		return (0);
 
 	while (get_next_line(fd, tetri_line) == 1)
 	{
-		if (ft_validate_tetriminio_line(tetri_line, y))
+		if (ft_validate_line(tetri_line, y))
 		{
-			if (ft_save_hash_positions(tetriminios, tetri_line, y, tcount))
+			if (ft_save_hash_positions(tetriminos, tetri_line, y, tcount))
 				ft_update_tetri_count(tcount, y);
 			else
 				return (0);
@@ -60,7 +60,7 @@ int			ft_save_and_validate(int fd, int **tetriminios, int *tcount)
 			return (0);
 		y++;
 	}
-	if (ft_validate_tetriminio_sides(tetriminios))
+	if (ft_validate_tetriminos(tetriminos, tcount))
 		return (1);
 	return (0);
 }
