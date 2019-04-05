@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   ft_save_and_validate_tetriminios.c                 :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: rlaros <rlaros@student.codam.nl>             +#+                     */
+/*   By: renslaros <renslaros@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/26 16:03:58 by renslaros      #+#    #+#                */
-/*   Updated: 2019/03/31 04:38:00 by rlaros        ########   odam.nl         */
+/*   Updated: 2019/04/04 17:15:53 by renslaros     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 

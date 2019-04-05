@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   ft_save_hash_positions.c                           :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: rlaros <rlaros@student.codam.nl>             +#+                     */
+/*   By: renslaros <renslaros@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/26 19:37:48 by renslaros      #+#    #+#                */
-/*   Updated: 2019/03/31 04:42:44 by rlaros        ########   odam.nl         */
+/*   Updated: 2019/04/04 23:27:35 by renslaros     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
