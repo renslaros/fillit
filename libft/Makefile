@@ -6,7 +6,7 @@
 #    By: rlaros <rlaros@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/01/17 09:42:33 by rlaros         #+#    #+#                 #
-#    Updated: 2019/03/06 00:11:55 by rlaros        ########   odam.nl          #
+#    Updated: 2019/04/07 04:54:16 by rlaros        ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ ft_strmap.c ft_strmapi.c ft_strequ.c ft_strnequ.c ft_strsub.c \
 ft_strjoin.c ft_strtrim.c ft_strsplit.c ft_itoa.c ft_putchar.c \
 ft_putstr.c ft_putendl.c ft_putnbr.c ft_putchar_fd.c ft_putstr_fd.c \
 ft_putendl_fd.c ft_putnbr_fd.c ft_lstnew.c ft_lstdelone.c ft_lstdel.c \
-ft_lstadd.c ft_lstiter.c ft_lstmap.c
+ft_lstadd.c ft_lstiter.c ft_lstmap.c ft_get_next_line.c
 
 OBJECTS = ft_atoi.o ft_bzero.o ft_isalnum.o ft_isalpha.o ft_isascii.o \
 ft_isdigit.o ft_isprint.o ft_memccpy.o ft_memchr.o ft_memcmp.o \
@@ -39,7 +39,7 @@ ft_strmap.o ft_strmapi.o ft_strequ.o ft_strnequ.o ft_strsub.o \
 ft_strjoin.o ft_strtrim.o ft_strsplit.o ft_itoa.o ft_putchar.o \
 ft_putstr.o ft_putendl.o ft_putnbr.o ft_putchar_fd.o ft_putstr_fd.o \
 ft_putendl_fd.o ft_putnbr_fd.o ft_lstnew.o ft_lstdelone.o ft_lstdel.o \
-ft_lstadd.o ft_lstiter.o ft_lstmap.o
+ft_lstadd.o ft_lstiter.o ft_lstmap.o ft_get_next_line.o
 
 all: $(NAME)
 

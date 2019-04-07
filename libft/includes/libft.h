@@ -6,7 +6,7 @@
 /*   By: rlaros <rlaros@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/01/12 14:31:06 by lskrauci       #+#    #+#                */
-/*   Updated: 2019/03/21 11:15:46 by rlaros        ########   odam.nl         */
+/*   Updated: 2019/04/07 04:52:12 by rlaros        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 #  define MAX_FD 4864
 #  define ENDL '\n'
 
-int					get_next_line(const int fd, char **line);
+int					ft_get_next_line(const int fd, char **line);
 # endif
 
 /*

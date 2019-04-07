@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   get_next_line.c                                    :+:    :+:            */
+/*   ft_get_next_line.c                                 :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: rlaros <rlaros@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/02/07 14:39:49 by rlaros         #+#    #+#                */
-/*   Updated: 2019/03/05 18:04:46 by rlaros        ########   odam.nl         */
+/*   Updated: 2019/04/07 04:53:07 by rlaros        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "libft.h"
 
 /*
 ** @desc Retrieves index of \n if present. If not it retrieves index of \0.
