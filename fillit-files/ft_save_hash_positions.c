@@ -3,17 +3,17 @@
 /*                                                        ::::::::            */
 /*   ft_save_hash_positions.c                           :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: renslaros <renslaros@student.codam.nl>       +#+                     */
+/*   By: rlaros <rlaros@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/05 08:11:23 by renslaros      #+#    #+#                */
-/*   Updated: 2019/04/05 08:53:02 by renslaros     ########   odam.nl         */
+/*   Updated: 2019/04/07 06:20:48 by rlaros        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
 void	ft_save_hash_positions(
-	int **tetriminos,
+	int t[26][8],
 	char *tetri_line,
 	int y,
 	int tcount
@@ -25,15 +25,15 @@ void	ft_save_hash_positions(
 	x = 0;
 	i = 0;
 	if (y >= 129)
-		return (0);
+		ft_handle_error(2);
 	y = y % 5;
 	while (tetri_line[x])
 	{
-		if (tetri_line[x] == '#' && tetriminos[tcount - 1][i]
-			&& tetriminos[tcount - 1][i + 1])
+		if (tetri_line[x] == '#' && t[tcount - 1][i]
+			&& t[tcount - 1][i + 1])
 		{
-			tetriminos[tcount - 1][i] = x;
-			tetriminos[tcount - 1][i + 1] = y;
+			t[tcount - 1][i] = x;
+			t[tcount - 1][i + 1] = y;
 			i += 2;
 			x++;
 		}

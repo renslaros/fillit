@@ -6,7 +6,7 @@
 /*   By: rlaros <rlaros@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/06 03:42:18 by rlaros         #+#    #+#                */
-/*   Updated: 2019/04/05 03:36:15 by rlaros        ########   odam.nl         */
+/*   Updated: 2019/04/07 06:15:27 by rlaros        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 #include "fillit.h"
 
-int	ft_setup(char **argv, int **tetriminos, int *tcount)
+int	ft_setup(char **argv, int tetriminos[26][8], int *tcount)
 {
 	int fd;
 
