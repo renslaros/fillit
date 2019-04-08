@@ -6,7 +6,7 @@
 /*   By: rlaros <rlaros@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/05 22:16:10 by rlaros         #+#    #+#                */
-/*   Updated: 2019/04/07 06:20:01 by rlaros        ########   odam.nl         */
+/*   Updated: 2019/04/08 04:27:56 by rlaros        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 */
 # include "../libft/includes/libft.h"
 # include <fcntl.h>
+# include <stdio.h>
 
 /*
 ** ERROR MESSAGES

@@ -6,7 +6,7 @@
 /*   By: rlaros <rlaros@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/06 03:42:18 by rlaros         #+#    #+#                */
-/*   Updated: 2019/04/07 06:23:26 by rlaros        ########   odam.nl         */
+/*   Updated: 2019/04/08 04:39:58 by rlaros        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ static int	ft_get_y_connections(int t[8], int x, int y, int hashnbr)
 static int	ft_get_side_count(int t[8], int x, int y, int hashnbr)
 {
 	int sides;
-
 	sides = ft_get_x_connections(t, x, y, hashnbr);
 	sides += ft_get_y_connections(t, x, y, hashnbr);
 	if (sides == 0)
@@ -83,7 +82,7 @@ static int	ft_get_side_count(int t[8], int x, int y, int hashnbr)
 
 /*
 ** @desc -
-** @param - int **t 2d Array representing all stored tetrimino's & it's positions
+** @param -
 ** @var -
 */
 
@@ -98,10 +97,9 @@ int			ft_validate_tetriminos(int t[26][8], int tcount)
 	j = 0;
 	hash_nbr = 0;
 	sides = 0;
-
 	while (t[i] && i < tcount)
 	{
-		while (t[i][j] && j <= 6)
+		while (j < 6)
 		{
 			hash_nbr = ((j + 1) / 2) + 1;
 			sides += ft_get_side_count(t[i], t[i][j], t[i][j + 1], hash_nbr);

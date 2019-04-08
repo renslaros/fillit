@@ -6,7 +6,7 @@
 /*   By: rlaros <rlaros@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/05 08:11:51 by renslaros      #+#    #+#                */
-/*   Updated: 2019/04/07 06:15:54 by rlaros        ########   odam.nl         */
+/*   Updated: 2019/04/08 05:06:32 by rlaros        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,28 +37,29 @@ static void	ft_update_tetri_count(int *tetri_count, int y)
 ** return - int 1 if reading was successfull
 */
 
-int			ft_save_and_validate(int fd, int tetriminos[26][8], int *tcount)
+int			ft_save_and_validate(int fd, int t[26][8], int *tcount)
 {
 	char	*tetri_line;
 	int		y;
 
 	y = 0;
 
-	if (fd < 0 || BUFF_SIZE < 1 || !tetriminos)
+	if (fd < 0 || BUFF_SIZE < 1 || !t)
 		return (0);
 
 	while (ft_get_next_line(fd, &tetri_line) == 1)
 	{
 		if (ft_validate_line(tetri_line, y))
 		{
-			ft_save_hash_positions(tetriminos, tetri_line, y, *tcount);
+			ft_save_hash_positions(t, tetri_line, y, *tcount);
 			ft_update_tetri_count(tcount, y);
 		}
 		else
 			return (0);
 		y++;
 	}
-	if (ft_validate_tetriminos(tetriminos, *tcount))
+	ft_putstr("yeah");
+	if (ft_validate_tetriminos(t, *tcount))
 		return (1);
 	return (0);
 }

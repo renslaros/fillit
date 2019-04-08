@@ -6,7 +6,7 @@
 /*   By: rlaros <rlaros@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/21 13:48:59 by renslaros      #+#    #+#                */
-/*   Updated: 2019/04/05 06:12:03 by rlaros        ########   odam.nl         */
+/*   Updated: 2019/04/08 05:05:46 by rlaros        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 static int	ft_validate_line_hashes(char *tetri_line, int lines)
 {
 	static int	hashcount;
-	int			allowed_hashes;
+	int			max_hashes;
 
 	if (!hashcount)
 		hashcount = 0;
@@ -33,9 +33,18 @@ static int	ft_validate_line_hashes(char *tetri_line, int lines)
 	{
 		if (*tetri_line == '#')
 			hashcount++;
+		tetri_line++;
 	}
-	allowed_hashes = (lines % 5) > 0 ? ((lines / 5) + 1 * 4) : (lines / 5) * 4;
-	if (hashcount <= allowed_hashes)
+	max_hashes = (lines % 5) > 0 ? (((lines / 5) + 1) * 4) : (lines / 5) * 4;
+	ft_putstr("\nAllowed Hashes:");
+	ft_putnbr(max_hashes);
+	ft_putstr("\nHashcount:");
+	ft_putnbr(hashcount);
+	ft_putstr("\nLine:");
+	ft_putnbr(lines);
+	if (hashcount < ((lines / 5) * 4))
+		return (0);
+	if (hashcount <= max_hashes)
 		return (1);
 	return (0);
 }
@@ -52,7 +61,7 @@ static int	ft_validate_line_length(char *tetri_line, int lines)
 {
 	if (ft_strlen(tetri_line) == 4)
 		return (1);
-	if (lines % 5 == 0 && tetri_line[0] == '\0')
+	if (lines % 5 == 0 && *tetri_line == '\0')
 		return (1);
 	return (0);
 }
@@ -74,7 +83,7 @@ static int	ft_validate_line_chars(char *tetri_line, int lines)
 		return (1);
 	while (tetri_line[i] != '\0')
 	{
-		if (tetri_line[i] != '#' || tetri_line[i] != '.')
+		if (tetri_line[i] != '#' && tetri_line[i] != '.')
 			return (0);
 		i++;
 	}
@@ -96,6 +105,8 @@ int			ft_validate_line(char *tetri_line, int y)
 	if (ft_validate_line_length(tetri_line, (y + 1)) &&
 		ft_validate_line_hashes(tetri_line, (y + 1)) &&
 		ft_validate_line_chars(tetri_line, (y + 1)))
+	{
 		return (1);
+	}
 	return (0);
 }
