@@ -6,7 +6,7 @@
 /*   By: rlaros <rlaros@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/21 13:48:59 by renslaros      #+#    #+#                */
-/*   Updated: 2019/04/08 05:05:46 by rlaros        ########   odam.nl         */
+/*   Updated: 2019/04/08 05:08:37 by rlaros        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,7 @@ static int	ft_validate_line_hashes(char *tetri_line, int lines)
 		tetri_line++;
 	}
 	max_hashes = (lines % 5) > 0 ? (((lines / 5) + 1) * 4) : (lines / 5) * 4;
-	ft_putstr("\nAllowed Hashes:");
-	ft_putnbr(max_hashes);
-	ft_putstr("\nHashcount:");
-	ft_putnbr(hashcount);
-	ft_putstr("\nLine:");
-	ft_putnbr(lines);
+
 	if (hashcount < ((lines / 5) * 4))
 		return (0);
 	if (hashcount <= max_hashes)
