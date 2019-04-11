@@ -6,7 +6,7 @@
 /*   By: rlaros <rlaros@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/05 08:11:23 by renslaros      #+#    #+#                */
-/*   Updated: 2019/04/08 04:28:43 by rlaros        ########   odam.nl         */
+/*   Updated: 2019/04/11 05:49:57 by rlaros        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,11 @@ void	ft_save_hash_positions(
 )
 {
 	int x;
-	int i;
+	static int i;
 
 	x = 0;
-	i = 0;
+	if (!i)
+		i = 0;
 	if (y >= 129)
 		ft_handle_error(2);
 	y = y % 5;
@@ -34,6 +35,8 @@ void	ft_save_hash_positions(
 			t[tcount - 1][i] = x;
 			t[tcount - 1][i + 1] = y;
 			i += 2;
+			if (i == 8)
+				i = 0;
 			x++;
 		}
 		else if (tetri_line[x] != '#' && tetri_line[x] == '.')
@@ -41,4 +44,5 @@ void	ft_save_hash_positions(
 		else
 			ft_handle_error(2);
 	}
+
 }

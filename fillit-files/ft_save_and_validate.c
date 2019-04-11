@@ -6,7 +6,7 @@
 /*   By: rlaros <rlaros@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/05 08:11:51 by renslaros      #+#    #+#                */
-/*   Updated: 2019/04/08 05:18:27 by rlaros        ########   odam.nl         */
+/*   Updated: 2019/04/11 05:43:47 by rlaros        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,13 @@ int			ft_save_and_validate(int fd, int t[26][8], int *tcount)
 	{
 		if (ft_validate_line(tetri_line, y))
 		{
-			ft_save_hash_positions(t, tetri_line, y, *tcount);
 			ft_update_tetri_count(tcount, y);
+			ft_save_hash_positions(t, tetri_line, y, *tcount);
 		}
 		else
 			return (0);
 		y++;
 	}
-	ft_putstr("All Lines Validates, validating tetriminos now \n");
 	if (ft_validate_tetriminos(t, *tcount))
 		return (1);
 	return (0);

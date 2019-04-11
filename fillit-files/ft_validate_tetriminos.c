@@ -6,7 +6,7 @@
 /*   By: rlaros <rlaros@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/06 03:42:18 by rlaros         #+#    #+#                */
-/*   Updated: 2019/04/08 05:41:15 by rlaros        ########   odam.nl         */
+/*   Updated: 2019/04/11 05:45:30 by rlaros        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,29 @@
 ** @var -
 */
 
-static int	ft_get_x_connections(int t[8], int x, int y, int hashnbr)
+static int	ft_get_x_connections(int t[8], int x, int y)
 {
 	int x_connections;
 	int i;
 
 	x_connections = 0;
 	i = 0;
-	while (t[i] && i <= 6)
+	while (i <= 6)
 	{
-		if ((i / 2) + 1 != hashnbr && t[i + 1] == y)
+		if (t[i] == x && t[i + 1] == y)
+		{
+			i += 2;
+		}
+		else
 		{
 			if ((t[i] == x || t[i] == (x + 1)) ||
 				(t[i] == (x - 1) && (x - 1) >= 0))
-				x_connections++;
+			{
+				if (t[i + 1] == y)
+					x_connections++;
+			}
+			i += 2;
 		}
-		i += 2;
 	}
 	return (x_connections);
 }
@@ -44,22 +51,29 @@ static int	ft_get_x_connections(int t[8], int x, int y, int hashnbr)
 ** @var -
 */
 
-static int	ft_get_y_connections(int t[8], int x, int y, int hashnbr)
+static int	ft_get_y_connections(int t[8], int x, int y)
 {
 	int y_connections;
 	int i;
 
 	y_connections = 0;
 	i = 0;
-	while (t[i] && i <= 6)
+	while (i <= 6)
 	{
-		if ((i / 2) + 1 != hashnbr && t[i] == x)
+		if (t[i] == x && t[i + 1] == y)
+		{
+			i += 2;
+		}
+		else
 		{
 			if ((t[i + 1] == y || t[i + 1] == (y + 1)) ||
 				(t[i + 1] == (y - 1) && (y - 1) >= 0))
-				y_connections++;
+			{
+				if (t[i] == x)
+					y_connections++;
+			}
+			i += 2;
 		}
-		i += 2;
 	}
 	return (y_connections);
 }
@@ -70,13 +84,12 @@ static int	ft_get_y_connections(int t[8], int x, int y, int hashnbr)
 ** @var -
 */
 
-static int	ft_get_side_count(int t[8], int x, int y, int hashnbr)
+static int	ft_get_side_count(int t[8], int x, int y)
 {
 	int sides;
-	sides = ft_get_x_connections(t, x, y, hashnbr);
-	sides += ft_get_y_connections(t, x, y, hashnbr);
-	if (sides == 0)
-		ft_handle_error(2);
+
+	sides = ft_get_x_connections(t, x, y);
+	sides += ft_get_y_connections(t, x, y);
 	return (sides);
 }
 
@@ -99,19 +112,17 @@ int			ft_validate_tetriminos(int t[26][8], int tcount)
 	sides = 0;
 	while (t[i] && i < tcount)
 	{
-		while (j < 6)
+		while (j < 7)
 		{
 			hash_nbr = ((j + 1) / 2) + 1;
-			sides += ft_get_side_count(t[i], t[i][j], t[i][j + 1], hash_nbr);
+			sides += ft_get_side_count(t[i], t[i][j], t[i][j + 1]);
 			j += 2;
 		}
 		if (sides != 6 && sides != 8)
-			ft_handle_error(2);
+			return (0);
 		sides = 0;
 		j = 0;
 		i++;
 	}
-	if ((i + 1) == tcount)
-		return (1);
-	return (0);
+	return (1);
 }
