@@ -6,7 +6,7 @@
 /*   By: rlaros <rlaros@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/05 08:11:51 by renslaros      #+#    #+#                */
-/*   Updated: 2019/04/11 05:43:47 by rlaros        ########   odam.nl         */
+/*   Updated: 2019/04/11 06:39:16 by rlaros        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	ft_update_tetri_count(int *tetri_count, int y)
 ** return - int 1 if reading was successfull
 */
 
-int			ft_save_and_validate(int fd, int t[26][8], int *tcount)
+int			ft_save_and_validate(int fd, int t[][8], int *tcount)
 {
 	char	*tetri_line;
 	int		y;

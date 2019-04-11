@@ -6,7 +6,7 @@
 /*   By: rlaros <rlaros@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/06 03:42:18 by rlaros         #+#    #+#                */
-/*   Updated: 2019/04/07 04:29:41 by rlaros        ########   odam.nl         */
+/*   Updated: 2019/04/11 06:34:35 by rlaros        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 #include "fillit.h"
 
-void	ft_solve(int ***tetriminios_ptr, int tcount)
+void	ft_solve(int tetriminos[][8], int tcount)
 {
-
+	exit(1);
 }

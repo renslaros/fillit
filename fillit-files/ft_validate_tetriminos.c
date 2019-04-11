@@ -6,7 +6,7 @@
 /*   By: rlaros <rlaros@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/06 03:42:18 by rlaros         #+#    #+#                */
-/*   Updated: 2019/04/11 05:45:30 by rlaros        ########   odam.nl         */
+/*   Updated: 2019/04/11 06:41:35 by rlaros        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,11 +86,7 @@ static int	ft_get_y_connections(int t[8], int x, int y)
 
 static int	ft_get_side_count(int t[8], int x, int y)
 {
-	int sides;
-
-	sides = ft_get_x_connections(t, x, y);
-	sides += ft_get_y_connections(t, x, y);
-	return (sides);
+	return (ft_get_x_connections(t, x, y) + ft_get_y_connections(t, x, y));
 }
 
 /*

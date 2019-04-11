@@ -6,21 +6,16 @@
 /*   By: rlaros <rlaros@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/05 08:11:23 by renslaros      #+#    #+#                */
-/*   Updated: 2019/04/11 05:49:57 by rlaros        ########   odam.nl         */
+/*   Updated: 2019/04/11 06:59:45 by rlaros        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void	ft_save_hash_positions(
-	int t[26][8],
-	char *tetri_line,
-	int y,
-	int tcount
-)
+void	ft_save_hash_positions(int t[][8], char *t_line, int y, int tcount)
 {
-	int x;
-	static int i;
+	int			x;
+	static int	i;
 
 	x = 0;
 	if (!i)
@@ -28,9 +23,9 @@ void	ft_save_hash_positions(
 	if (y >= 129)
 		ft_handle_error(2);
 	y = y % 5;
-	while (tetri_line[x])
+	while (t_line[x])
 	{
-		if (tetri_line[x] == '#')
+		if (t_line[x] == '#')
 		{
 			t[tcount - 1][i] = x;
 			t[tcount - 1][i + 1] = y;
@@ -39,10 +34,9 @@ void	ft_save_hash_positions(
 				i = 0;
 			x++;
 		}
-		else if (tetri_line[x] != '#' && tetri_line[x] == '.')
+		else if (t_line[x] != '#' && t_line[x] == '.')
 			x++;
 		else
 			ft_handle_error(2);
 	}
-
 }

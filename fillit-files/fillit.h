@@ -6,7 +6,7 @@
 /*   By: rlaros <rlaros@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/05 22:16:10 by rlaros         #+#    #+#                */
-/*   Updated: 2019/04/08 04:27:56 by rlaros        ########   odam.nl         */
+/*   Updated: 2019/04/11 06:39:07 by rlaros        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,20 +39,19 @@ void	ft_handle_error(int error_code);
 ** Fillit Setup
 */
 
-int		ft_setup(char **argv, int t[26][8], int *tcount);
+int		ft_setup(char **argv, int t[][8], int *tcount);
 
 /*
 ** Fillit Tetriminio input saving and validation
 */
-int		ft_save_and_validate(int fd, int t[26][8], int *tcount);
+int		ft_save_and_validate(int fd, int t[][8], int *tcount);
 
 int		ft_validate_line(char *tetri_line, int y);
-int		ft_validate_tetriminos(int t[26][8], int tcount);
-void	ft_save_hash_positions(
-	int t[26][8],
-	char *tetri_line,
-	int y,
-	int tcount
-);
+int		ft_validate_tetriminos(int t[][8], int tcount);
+void	ft_save_hash_positions(int t[][8], char *t_line, int y, int tcount);
 
+/*
+** Tetrimino Solving
+*/
+void	ft_solve(int tetriminos[][8], int tcount);
 #endif
