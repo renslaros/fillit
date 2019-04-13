@@ -6,7 +6,7 @@
 /*   By: renslaros <renslaros@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/21 13:48:59 by renslaros      #+#    #+#                */
-/*   Updated: 2019/04/13 21:41:27 by renslaros     ########   odam.nl         */
+/*   Updated: 2019/04/13 21:43:58 by renslaros     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,7 @@ static int	ft_validate_line_hashes(char *t_line, int lines)
 
 static int	ft_validate_line_length(char *t_line, int lines)
 {
-	if (ft_strlen(t_line) == 4)
-		return (1);
-	if (lines % 5 == 0 && *t_line == '\0')
+	if ((ft_strlen(t_line) == 4) || (lines % 5 == 0 && *t_line == '\0'))
 		return (1);
 	return (0);
 }
@@ -93,9 +91,8 @@ static int	ft_validate_line_chars(char *t_line, int lines)
 	int i;
 
 	i = 0;
-	if (lines % 5 != 0 && *t_line == '\0')
-		return (0);
-	if (lines % 5 == 0 && *t_line != '\0')
+	if ((lines % 5 != 0 && *t_line == '\0') ||
+		(lines % 5 == 0 && *t_line != '\0'))
 		return (0);
 	while (t_line[i])
 	{

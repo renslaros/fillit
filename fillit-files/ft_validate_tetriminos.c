@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   ft_validate_tetriminos.c                           :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: rlaros <rlaros@student.codam.nl>             +#+                     */
+/*   By: renslaros <renslaros@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/06 03:42:18 by rlaros         #+#    #+#                */
-/*   Updated: 2019/04/13 04:15:53 by rlaros        ########   odam.nl         */
+/*   Updated: 2019/04/13 21:50:16 by renslaros     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ static int	ft_get_side_count(int t[8], int x, int y)
 ** @param int t[][8] - 2d tetrimino array holding # X & Y positions
 ** @param int tcount - tetrimino counter (Amount of tetriminos we have)
 ** @var int i - iterator used to loop over all tetrimino hashes
-** @var int j - iterator used to loop over all tetrimino X positions
+** @var int x - iterator used to loop over all tetrimino X positions
 ** @var int sides - amount of sides on which each # in the tetrimino connects
 */
 
@@ -132,23 +132,23 @@ static int	ft_get_side_count(int t[8], int x, int y)
 int			ft_validate_tetriminos(int t[26][8], int tcount)
 {
 	int i;
-	int j;
+	int x;
 	int sides;
 
 	i = 0;
-	j = 0;
+	x = 0;
 	sides = 0;
 	while (t[i] && i < tcount)
 	{
-		while (j <= 6)
+		while (x <= 6)
 		{
-			sides += ft_get_side_count(t[i], t[i][j], t[i][j + 1]);
-			j += 2;
+			sides += ft_get_side_count(t[i], t[i][x], t[i][x + 1]);
+			x += 2;
 		}
 		if (sides != 6 && sides != 8)
 			return (0);
 		sides = 0;
-		j = 0;
+		x = 0;
 		i++;
 	}
 	return (1);
