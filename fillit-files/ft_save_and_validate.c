@@ -6,7 +6,7 @@
 /*   By: rlaros <rlaros@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/05 08:11:51 by renslaros      #+#    #+#                */
-/*   Updated: 2019/04/13 03:43:11 by rlaros        ########   odam.nl         */
+/*   Updated: 2019/04/13 04:20:29 by rlaros        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,16 @@ static void	ft_update_tetri_count(int *t_count, int y)
 ** @var int y - row counter
 ** return - int 0 if reading went unsuccessfull
 ** return - int 1 if reading was successfull
+*/
+
+/*
+** Validate fd, buff size & received 2d tetrimino array. Return 0 if invalid
+** Loop over each line from the received tetrimino input
+** If the line is valid we update the tetri count and store the hashes correctly
+** If the line isn't valid we return 0 otherwise we increase y and continue
+** If we're done validating & reading all lines as well as saving the #'s
+** We make sure the hashes we stored are valid tetriminos
+** if so we return 1, if not we return 0
 */
 
 int			ft_save_and_validate(int fd, int t[][8], int *tcount)
