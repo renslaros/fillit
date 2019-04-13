@@ -6,11 +6,28 @@
 /*   By: renslaros <renslaros@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/05 08:11:51 by renslaros      #+#    #+#                */
-/*   Updated: 2019/04/13 21:24:58 by renslaros     ########   odam.nl         */
+/*   Updated: 2019/04/13 21:32:22 by renslaros     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+
+/*
+** @desc - Validates received input such as filedescriptor 2d array & buffsize
+** @param int fd - Filedescriptor to read tetriminios from
+** @param int t[][8] - 2d tetrimino array holding # X & Y positions
+** @param int *tcount - pointer to tetrimino counter
+*/
+
+/*
+** return error and exit program if one of the conditions below are met
+*/
+
+void		ft_validate_input(int fd, int t[][8], int *tcount)
+{
+	if (fd < 0 || BUFF_SIZE < 1 || !t || !tcount)
+		ft_handle_error(2);
+}
 
 /*
 ** @desc - Updates the tetrimino counter based on y index.
@@ -55,8 +72,7 @@ int			ft_save_and_validate(int fd, int t[][8], int *tcount)
 	int		y;
 
 	y = 0;
-	if (fd < 0 || BUFF_SIZE < 1 || !t)
-		return (0);
+	ft_validate_input(fd, t, tcount);
 	while (ft_get_next_line(fd, &tetri_line) == 1)
 	{
 		ft_update_tetri_count(tcount, y);
@@ -65,6 +81,5 @@ int			ft_save_and_validate(int fd, int t[][8], int *tcount)
 		ft_save_hash_positions(t, tetri_line, y, *tcount);
 		y++;
 	}
-
 	return (ft_validate_tetriminos(t, *tcount) ? 1 : 0);
 }
