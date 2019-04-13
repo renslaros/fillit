@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   ft_validate_line.c                                 :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: rlaros <rlaros@student.codam.nl>             +#+                     */
+/*   By: renslaros <renslaros@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/21 13:48:59 by renslaros      #+#    #+#                */
-/*   Updated: 2019/04/13 03:43:24 by rlaros        ########   odam.nl         */
+/*   Updated: 2019/04/13 21:41:27 by renslaros     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,10 +122,7 @@ int			ft_validate_line(char *t_line, int y)
 {
 	y++;
 	if (ft_validate_line_length(t_line, y) &&
-		ft_validate_line_hashes(t_line, y) &&
-		ft_validate_line_chars(t_line, y))
-	{
+		ft_validate_line_hashes(t_line, y) && ft_validate_line_chars(t_line, y))
 		return (1);
-	}
 	return (0);
 }
