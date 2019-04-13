@@ -6,7 +6,7 @@
 /*   By: renslaros <renslaros@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/05 08:11:51 by renslaros      #+#    #+#                */
-/*   Updated: 2019/04/13 21:20:19 by renslaros     ########   odam.nl         */
+/*   Updated: 2019/04/13 21:24:58 by renslaros     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,12 @@ static void	ft_update_tetri_count(int *t_count, int y)
 /*
 ** Validate fd, buff size & received 2d tetrimino array. Return 0 if invalid
 ** Loop over each line from the received tetrimino input
-** If the line is valid we update the tetri count and store the hashes correctly
-** If the line isn't valid we return 0 otherwise we increase y and continue
+** Update the tetri counter on each iteration
+** If the line is invalid we return 0
+** Otherwise we save the hashes in the line and increase y
 ** If we're done validating & reading all lines as well as saving the #'s
 ** We make sure the hashes we stored are valid tetriminos
-** if so we return 1, if not we return 0
+** if so the validator returns 1 and we return 1, if not we return 0
 */
 
 int			ft_save_and_validate(int fd, int t[][8], int *tcount)
@@ -58,13 +59,10 @@ int			ft_save_and_validate(int fd, int t[][8], int *tcount)
 		return (0);
 	while (ft_get_next_line(fd, &tetri_line) == 1)
 	{
-		if (ft_validate_line(tetri_line, y))
-		{
-			ft_update_tetri_count(tcount, y);
-			ft_save_hash_positions(t, tetri_line, y, *tcount);
-		}
-		else
+		ft_update_tetri_count(tcount, y);
+		if (!ft_validate_line(tetri_line, y))
 			return (0);
+		ft_save_hash_positions(t, tetri_line, y, *tcount);
 		y++;
 	}
 
