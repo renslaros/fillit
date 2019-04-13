@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   ft_save_and_validate.c                             :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: rlaros <rlaros@student.codam.nl>             +#+                     */
+/*   By: renslaros <renslaros@student.codam.nl>       +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/05 08:11:51 by renslaros      #+#    #+#                */
-/*   Updated: 2019/04/13 04:20:29 by rlaros        ########   odam.nl         */
+/*   Updated: 2019/04/13 21:20:19 by renslaros     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ int			ft_save_and_validate(int fd, int t[][8], int *tcount)
 			return (0);
 		y++;
 	}
-	if (ft_validate_tetriminos(t, *tcount))
-		return (1);
-	return (0);
+
+	return (ft_validate_tetriminos(t, *tcount) ? 1 : 0);
 }
