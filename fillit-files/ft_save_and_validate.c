@@ -6,31 +6,32 @@
 /*   By: rlaros <rlaros@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/04/05 08:11:51 by renslaros      #+#    #+#                */
-/*   Updated: 2019/04/11 06:39:16 by rlaros        ########   odam.nl         */
+/*   Updated: 2019/04/13 03:43:11 by rlaros        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
 /*
-** @desc -
-** @param -
-** @var -
+** @desc - Updates the tetrimino counter based on y index.
+** @param int *tcount - pointer to tetrimino counter
+** @param int y - current y index used as iterator while reading t_lines
 */
 
-static void	ft_update_tetri_count(int *tetri_count, int y)
+static void	ft_update_tetri_count(int *t_count, int y)
 {
-	if ((y + 1) % 5 == 0)
-		*tetri_count = (y + 1) / 5;
+	y++;
+	if (y % 5 == 0)
+		*t_count = y / 5;
 	else
-		*tetri_count = ((y + 1) / 5) + 1;
+		*t_count = (y / 5) + 1;
 }
 
 /*
-** @desc - Reads and validates all the tetriminios from given input
-** @desc - Stores the tetriminios into received 3d tetriminios array
-** @param - int **tetriminios 3D array storing tetriminios with X & Y values
-** @param - int fd - Filedescriptor to read tetriminios from
+** @desc - Saves and validates the given tetrimino input
+** @param int fd - Filedescriptor to read tetriminios from
+** @param int t[][8] - 2d tetrimino array holding # X & Y positions
+** @param int *tcount - pointer to tetrimino counter
 ** @var char *tetri_line - line holder passed to GNL
 ** @var int y - row counter
 ** return - int 0 if reading went unsuccessfull
@@ -43,10 +44,8 @@ int			ft_save_and_validate(int fd, int t[][8], int *tcount)
 	int		y;
 
 	y = 0;
-
 	if (fd < 0 || BUFF_SIZE < 1 || !t)
 		return (0);
-
 	while (ft_get_next_line(fd, &tetri_line) == 1)
 	{
 		if (ft_validate_line(tetri_line, y))

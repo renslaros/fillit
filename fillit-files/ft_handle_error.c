@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   ft_handle_error.c                                  :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: renslaros <renslaros@student.codam.nl>       +#+                     */
+/*   By: rlaros <rlaros@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/06 03:19:54 by rlaros         #+#    #+#                */
-/*   Updated: 2019/03/21 14:23:15 by renslaros     ########   odam.nl         */
+/*   Updated: 2019/04/11 08:33:52 by rlaros        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 /*
 ** @desc - Prints usage or error message and exits the application accordingly.
-** @param int error_code - Used to identify the type of error currently occuring
+** @param int error_code - Specifying the code of the occuring error.
 */
 
 void	ft_handle_error(int error_code)

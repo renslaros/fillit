@@ -6,7 +6,7 @@
 /*   By: rlaros <rlaros@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/21 13:48:59 by renslaros      #+#    #+#                */
-/*   Updated: 2019/04/11 06:39:57 by rlaros        ########   odam.nl         */
+/*   Updated: 2019/04/13 03:43:24 by rlaros        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,15 @@
 ** @var int allowed_hashes -
 ** return int 1 if valid
 ** return int 0 if invalid
+*/
+
+/*
+** Start with a static hashcount of 0
+** Loop over the tetrimino line and increase the hashcount if an # occurs
+** Calculate the amount of hashes based on the lines we've currently read
+** Check if we didn't receive enough #'s based on lines we've currently read
+** Check if we don't exceed the maximum amount of hashes
+** Return 0 if one of the checks fail or 1 otherwise
 */
 
 static int	ft_validate_line_hashes(char *t_line, int lines)
@@ -36,12 +45,9 @@ static int	ft_validate_line_hashes(char *t_line, int lines)
 		t_line++;
 	}
 	max_hashes = (lines % 5) > 0 ? (((lines / 5) + 1) * 4) : (lines / 5) * 4;
-
-	if (hashcount < ((lines / 5) * 4))
+	if (hashcount < ((lines / 5) * 4) || hashcount > max_hashes)
 		return (0);
-	if (hashcount <= max_hashes)
-		return (1);
-	return (0);
+	return (1);
 }
 
 /*
@@ -50,6 +56,12 @@ static int	ft_validate_line_hashes(char *t_line, int lines)
 ** @param int lines - number of lines
 ** return int 1 if valid
 ** return int 0 if invalid
+*/
+
+/*
+** Return 1 if t_line length is 4
+** Return 1 if t_line is empty and is supposed to be so
+** Return 0 in any other case
 */
 
 static int	ft_validate_line_length(char *t_line, int lines)
@@ -69,22 +81,29 @@ static int	ft_validate_line_length(char *t_line, int lines)
 ** return int 0 if invalid
 */
 
+/*
+** Check if the line isn't supposed to be empty and return 0 if is
+** Check if the line is supposed to be empty and return 0 if it's not
+** Loop over t_line using I and return 0 if something other than # or . is found
+** Return 1 if we successfully looped over t_line
+*/
+
 static int	ft_validate_line_chars(char *t_line, int lines)
 {
 	int i;
 
 	i = 0;
-	if (lines % 5 == 0 && t_line[0] == '\0')
-		return (1);
-	while (t_line[i] != '\0')
+	if (lines % 5 != 0 && *t_line == '\0')
+		return (0);
+	if (lines % 5 == 0 && *t_line != '\0')
+		return (0);
+	while (t_line[i])
 	{
 		if (t_line[i] != '#' && t_line[i] != '.')
 			return (0);
 		i++;
 	}
-	if (t_line[i] == '\0' && t_line[0] != '\0')
-		return (1);
-	return (0);
+	return (1);
 }
 
 /*
@@ -95,11 +114,16 @@ static int	ft_validate_line_chars(char *t_line, int lines)
 ** return int 0 if invalid
 */
 
+/*
+** Return 1 When all called functions are valid and return 1 return 0 otherwise
+*/
+
 int			ft_validate_line(char *t_line, int y)
 {
-	if (ft_validate_line_length(t_line, (y + 1)) &&
-		ft_validate_line_hashes(t_line, (y + 1)) &&
-		ft_validate_line_chars(t_line, (y + 1)))
+	y++;
+	if (ft_validate_line_length(t_line, y) &&
+		ft_validate_line_hashes(t_line, y) &&
+		ft_validate_line_chars(t_line, y))
 	{
 		return (1);
 	}
