@@ -6,7 +6,7 @@
 #    By: rlaros <rlaros@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/01/17 09:42:33 by rlaros         #+#    #+#                 #
-#    Updated: 2019/04/07 04:54:16 by rlaros        ########   odam.nl          #
+#    Updated: 2019/04/13 04:43:12 by rlaros        ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,26 +47,26 @@ $(NAME):
 	@echo —————————————————————————————————
 	@echo [\#] Compiling $(NAME) With -c
 	@echo —————————————————————————————————
-	gcc $(OPTIONS) $(SRCS)
+	@gcc $(OPTIONS) $(SRCS)
 	@echo —————————————————————————————————
 	@echo [\#] Building $(NAME) Library
 	@echo —————————————————————————————————
-	ar rc $(NAME) $(OBJECTS)
+	@ar rc $(NAME) $(OBJECTS)
 	@echo —————————————————————————————————
 	@echo [\#] Creating index for $(NAME)
 	@echo —————————————————————————————————
-	ranlib $(NAME)
+	@ranlib $(NAME)
 
 clean:
 	@echo —————————————————————————————————
 	@echo [\#] Cleaning $(NAME)
 	@echo —————————————————————————————————
-	rm -f *.o
+	@rm -f *.o
 
 fclean: clean
 	@echo —————————————————————————————————
 	@echo [\#] Removing $(NAME)
 	@echo —————————————————————————————————
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all
