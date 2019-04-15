@@ -6,7 +6,7 @@
 #    By: rlaros <rlaros@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/01/17 09:42:33 by lskrauci       #+#    #+#                 #
-#    Updated: 2019/04/13 04:45:14 by rlaros        ########   odam.nl          #
+#    Updated: 2019/04/15 19:29:13 by rlaros        ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,11 @@ OPTIONS = -o $(NAME)
 LIB_BUILD_CMD = -C ../libft/ fclean && make -C ../libft/ && make clean -C ../libft
 PROGRAM_BUILD_CMD = $(SRCS) $(OPTIONS) $(FLAGS) $(LIBRARY)
 SRCS = fillit.c ft_handle_error.c ft_setup.c \
-ft_save_and_validate.c ft_save_hash_positions.c ft_validate_line.c ft_validate_tetriminos.c
+ft_save_and_validate.c ft_save_hash_positions.c \
+ft_validate_line.c ft_validate_tetriminos.c \
+ft_fillit_magic_withstruct.c ft_place_tetri.c \
+ft_remove_tetri.c ft_make_board.c ft_solve_funct.c \
+ft_convert
 
 all: $(NAME)
 

@@ -6,7 +6,7 @@
 /*   By: rlaros <rlaros@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/05 22:16:10 by rlaros         #+#    #+#                */
-/*   Updated: 2019/04/15 17:53:47 by rlaros        ########   odam.nl         */
+/*   Updated: 2019/04/15 19:26:30 by rlaros        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 */
 # include "../libft/includes/libft.h"
 # include <fcntl.h>
+
 
 /*
 ** Typedefinitions
@@ -77,10 +78,11 @@ t_tbox	*ft_make_tbox(int tetri_count);
 void	ft_reset_board(t_tbox *tbox);
 void	ft_remove_tetri(t_tbox *tbox);
 int		ft_incr_condition(t_tbox *tbox);
-char	**ft_dup_board(t_tbox *tbox);
 int		ft_find_coordinates(t_tbox *tbox);
 void	ft_no_space(int tetri[][6], t_tbox *tbox);
 void	ft_find_place(int tetri[][6], t_tbox *tbox);
 void	ft_solve_loop(int tetri[][6], t_tbox *tbox);
 int		ft_fillit_solve(int tetri[][6], t_tbox *tbox);
+int		*ft_convert(int tetriminos[][8]);
+
 #endif
