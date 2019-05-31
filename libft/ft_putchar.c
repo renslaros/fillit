@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   ft_putchar.c                                       :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: rlaros <rlaros@student.codam.nl>             +#+                     */
+/*   By: abumbier <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/01/16 14:17:06 by rlaros         #+#    #+#                */
-/*   Updated: 2019/01/28 19:19:28 by rlaros        ########   odam.nl         */
+/*   Created: 2019/01/23 18:03:12 by abumbier      #+#    #+#                 */
+/*   Updated: 2019/02/13 19:42:09 by abumbier      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,6 @@
 
 void	ft_putchar(char c)
 {
-	ft_putchar_fd(c, 1);
+	if (c >= -128 && c <= 127)
+		write(1, &c, 1);
 }

@@ -3,34 +3,34 @@
 /*                                                        ::::::::            */
 /*   ft_memcmp.c                                        :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: rlaros <rlaros@student.codam.nl>             +#+                     */
+/*   By: abumbier <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/01/16 14:17:06 by rlaros         #+#    #+#                */
-/*   Updated: 2019/01/31 11:04:30 by rlaros        ########   odam.nl         */
+/*   Created: 2019/01/25 13:31:36 by abumbier      #+#    #+#                 */
+/*   Updated: 2019/02/13 19:40:31 by abumbier      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/*
-** return 0 if identical
-** return difference of first differing bytes
-** treat as unsigned char
-** zero length strings are always identical
-*/
-
 int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	unsigned char	*uc1;
-	unsigned char	*uc2;
+	int				dif;
 	size_t			i;
+	unsigned char	*str1;
+	unsigned char	*str2;
 
-	uc1 = (unsigned char *)s1;
-	uc2 = (unsigned char *)s2;
+	str1 = (unsigned char *)s1;
+	str2 = (unsigned char *)s2;
 	i = 0;
-	while (i < n && uc1[i] == uc2[i])
-		i++;
-	if (i == n)
-		return (0);
-	return (uc1[i] - uc2[i]);
+	while (i < n)
+	{
+		if (str1[i] == str2[i])
+			i++;
+		else
+		{
+			dif = str1[i] - str2[i];
+			return (dif);
+		}
+	}
+	return (0);
 }

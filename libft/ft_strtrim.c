@@ -3,38 +3,60 @@
 /*                                                        ::::::::            */
 /*   ft_strtrim.c                                       :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: rlaros <rlaros@student.codam.nl>             +#+                     */
+/*   By: abumbier <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/01/16 14:17:06 by rlaros         #+#    #+#                */
-/*   Updated: 2019/02/04 06:57:12 by rlaros        ########   odam.nl         */
+/*   Created: 2019/02/03 19:13:48 by abumbier      #+#    #+#                 */
+/*   Updated: 2019/02/13 19:53:15 by abumbier      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strtrim(char const *s)
+static int	trim_begin(const char *s)
 {
-	int		i;
-	int		len;
+	int	i;
+
+	i = 0;
+	while (s[i] && (s[i] == ' ' || s[i] == '\n' || s[i] == '\t'))
+		i++;
+	return (i);
+}
+
+static int	trim_end(const char *s)
+{
+	int	i;
+
+	i = ft_strlen(s) - 1;
+	while (s[i] && (s[i] == ' ' || s[i] == '\n' || s[i] == '\t'))
+		i--;
+	return (i);
+}
+
+char		*ft_strtrim(char const *s)
+{
+	int		i[2];
+	int		end;
 	char	*str;
 
 	if (s == NULL)
 		return (NULL);
-	len = ft_strlen(s);
-	while (s[len - 1] == ' ' || s[len - 1] == '\t' || s[len - 1] == '\n')
-		len--;
-	i = -1;
-	while (s[++i] == ' ' || s[i] == '\t' || s[i] == '\n')
-		len--;
-	if (len <= 0)
-		len = 0;
-	str = (char*)malloc(sizeof(char) * (len + 1));
+	i[1] = 0;
+	i[0] = trim_begin(s);
+	end = trim_end(s);
+	if (i[0] == (int)ft_strlen(s))
+	{
+		str = ft_strdup("\0");
+		return (str);
+	}
+	str = (char*)malloc(sizeof(char) * (end - i[0] + 2));
 	if (str == NULL)
 		return (NULL);
-	s += i;
-	i = -1;
-	while (++i < len)
-		str[i] = *s++;
-	str[i] = '\0';
+	while (i[0] <= end)
+	{
+		str[i[1]] = s[i[0]];
+		i[1]++;
+		i[0]++;
+	}
+	str[i[1]] = '\0';
 	return (str);
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   ft_save_and_validate.c                             :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: renslaros <renslaros@student.codam.nl>       +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2019/04/05 08:11:51 by renslaros      #+#    #+#                */
-/*   Updated: 2019/04/13 21:32:22 by renslaros     ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   ft_save_and_validate.c                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abumbier <abumbier@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/04/05 08:11:51 by renslaros         #+#    #+#             */
+/*   Updated: 2019/05/07 13:53:41 by abumbier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,19 @@ int			ft_save_and_validate(int fd, int t[][8], int *tcount)
 	{
 		ft_update_tetri_count(tcount, y);
 		if (!ft_validate_line(tetri_line, y))
+		{
+			free(tetri_line);
 			return (0);
+		}
 		ft_save_hash_positions(t, tetri_line, y, *tcount);
+		free(tetri_line);
 		y++;
 	}
+	if (!ft_validate_line(tetri_line, y))
+	{
+		free(tetri_line);
+		return (0);
+	}
+	free(tetri_line);
 	return (ft_validate_tetriminos(t, *tcount) ? 1 : 0);
 }

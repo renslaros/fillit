@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   ft_lstadd.c                                        :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: rlaros <rlaros@student.codam.nl>             +#+                     */
+/*   By: abumbier <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/01/16 14:17:06 by rlaros         #+#    #+#                */
-/*   Updated: 2019/02/04 06:19:36 by rlaros        ########   odam.nl         */
+/*   Created: 2019/02/12 18:04:16 by abumbier      #+#    #+#                 */
+/*   Updated: 2019/02/14 17:42:58 by abumbier      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 

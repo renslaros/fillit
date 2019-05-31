@@ -3,84 +3,76 @@
 /*                                                        ::::::::            */
 /*   ft_strsplit.c                                      :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: rlaros <rlaros@student.codam.nl>             +#+                     */
+/*   By: abumbier <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/01/16 14:17:06 by rlaros         #+#    #+#                */
-/*   Updated: 2019/02/04 07:16:19 by rlaros        ########   odam.nl         */
+/*   Created: 2019/02/03 20:12:01 by abumbier      #+#    #+#                 */
+/*   Updated: 2019/02/15 20:05:13 by abumbier      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static	int		ft_count_words(const char *str, char delim)
+static int	split_count(char const *s, char c)
 {
-	int	words;
 	int	i;
+	int count;
 
+	count = 0;
 	i = 0;
-	words = 0;
-	if (!str)
-		return (0);
-	while (str[i] == delim)
-		i++;
-	while (str[i])
+	while (s[i])
 	{
-		if (str[i] == delim && str[i + 1] != delim && str[i + 1] != '\0')
-			words++;
-		i++;
+		if (s[i] != c)
+		{
+			count++;
+			while (s[i] && s[i] != c)
+				i++;
+		}
+		else
+			i++;
 	}
-	if (str[0] != '\0')
-		words++;
-	return (words);
+	return (count);
 }
 
-static	char	*ft_get_word(const char *str, char delim, int *index_ptr)
+static char	**get_split(char **split, const char *s, char c)
 {
-	char	*word_arr;
-	int		i;
-	int		j;
+	int	i;
+	int n;
+	int x;
 
-	j = *index_ptr;
-	while (j != delim && str[j])
-		j++;
-	word_arr = (char *)malloc(sizeof(word_arr) * (j - *index_ptr));
-	if (!word_arr)
-		return (NULL);
 	i = 0;
-	while (str[*index_ptr] != delim && str[*index_ptr])
+	x = 0;
+	while (i < split_count(s, c))
 	{
-		word_arr[i] = str[*index_ptr];
+		n = 0;
+		while (s[x] && s[x] == c)
+			x++;
+		split[i] = ft_strnew(ft_wordlen(&s[x], c) + 1);
+		if (split[i] == NULL)
+			return (NULL);
+		while (s[x] && s[x] != c)
+		{
+			split[i][n] = s[x];
+			n++;
+			x++;
+		}
+		split[i][n] = '\0';
 		i++;
-		*index_ptr += 1;
 	}
-	word_arr[i] = '\0';
-	while (str[*index_ptr] == delim && str[*index_ptr])
-		*index_ptr += 1;
-	return (word_arr);
+	split[i] = NULL;
+	return (split);
 }
 
-char			**ft_strsplit(char const *s, char c)
+char		**ft_strsplit(char const *s, char c)
 {
-	int		i;
-	int		y;
-	int		word_count;
-	char	**db;
+	char	**split;
 
-	i = 0;
-	y = 0;
 	if (!s)
-		return (0);
-	word_count = ft_count_words(s, c);
-	db = (char**)malloc((word_count + 1) * sizeof(char*));
-	if (!db)
 		return (NULL);
-	while (s[i] == c && s[i])
-		i++;
-	while (y < word_count && s[i])
-	{
-		db[y] = ft_get_word(s, c, &i);
-		y++;
-	}
-	db[y] = 0;
-	return (db);
+	split = (char**)malloc(sizeof(char*) * split_count(s, c) + 1);
+	if (!split)
+		return (NULL);
+	split = get_split(split, s, c);
+	if (split == NULL)
+		return (NULL);
+	return (split);
 }

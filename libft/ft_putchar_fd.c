@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   ft_putchar_fd.c                                    :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: rlaros <rlaros@student.codam.nl>             +#+                     */
+/*   By: abumbier <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/01/16 14:17:06 by rlaros         #+#    #+#                */
-/*   Updated: 2019/01/17 21:40:41 by rlaros        ########   odam.nl         */
+/*   Created: 2019/01/25 23:34:30 by abumbier      #+#    #+#                 */
+/*   Updated: 2019/02/11 19:51:20 by abumbier      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 

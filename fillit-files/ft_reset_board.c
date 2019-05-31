@@ -1,31 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_array_min_value.c                               :+:    :+:            */
+/*   ft_reset_board.c                                   :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: rlaros <rlaros@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/02/04 21:01:10 by rlaros         #+#    #+#                */
-/*   Updated: 2019/02/04 21:02:56 by rlaros        ########   odam.nl         */
+/*   Created: 2019/05/31 06:43:59 by rlaros         #+#    #+#                */
+/*   Updated: 2019/05/31 06:44:07 by rlaros        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "fillit.h"
+
 /*
-** Returns the value of the array’s smallest element.
+** @desc - resets the board to only dots.
+** @param t_tbox *tbox - structure with board and tindex values.
+** @var int i and j - to loop through the board.
 */
 
-int		ft_array_min_value(int *arr, int length)
+void	ft_reset_board(t_tbox *tbox)
 {
 	int		i;
-	int		min;
+	int		j;
 
 	i = 0;
-	min = 0;
-	while (i < length)
+	j = 0;
+	while (tbox->board[i])
 	{
-		if (min > arr[i])
-			min = arr[i];
-		i += 1;
+		while (tbox->board[i][j] != '\n')
+		{
+			if (tbox->board[i][j] != '.')
+				tbox->board[i][j] = '.';
+			j++;
+		}
+		j = 0;
+		i++;
 	}
-	return (min);
+	tbox->tid = 0;
+	tbox->xy[0] = 0;
+	tbox->xy[1] = 0;
 }

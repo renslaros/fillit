@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_isprime.c                                       :+:    :+:            */
+/*   ft_intlen.c                                        :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: rlaros <rlaros@student.codam.nl>             +#+                     */
+/*   By: abumbier <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/02/04 20:32:21 by rlaros         #+#    #+#                */
-/*   Updated: 2019/02/04 20:32:34 by rlaros        ########   odam.nl         */
+/*   Created: 2019/02/19 16:46:47 by abumbier      #+#    #+#                 */
+/*   Updated: 2019/02/19 16:46:55 by abumbier      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-int	ft_isprime(int nb)
+int	ft_intlen(int n)
 {
-	int	i;
+	int			len;
+	unsigned	temp;
 
-	if (nb < 2)
-		return (0);
-	i = 2;
-	while (i * i <= nb)
+	len = 0;
+	if (n < 0)
+		temp = n * -1;
+	else
+		temp = n;
+	if (n == 0)
+		len++;
+	while (temp > 0)
 	{
-		if (nb % i == 0)
-			return (0);
-		i++;
+		temp /= 10;
+		len++;
 	}
-	return (1);
+	return (len);
 }

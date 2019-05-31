@@ -1,35 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_stradd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abumbier <abumbier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/30 15:17:21 by abumbier          #+#    #+#             */
-/*   Updated: 2019/03/21 20:07:48 by abumbier         ###   ########.fr       */
+/*   Created: 2019/02/02 20:24:18 by abumbier          #+#    #+#             */
+/*   Updated: 2019/04/29 18:25:04 by abumbier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *s, int c)
-{
-	int		i;
-	char	ch;
-	char	*str;
+/*
+** @desc: ft_strjoin which return value overwrites (without leaks) s1.
+*/
 
-	i = 0;
-	ch = c;
-	str = (char*)s;
-	while (s[i])
-	{
-		if (str[i] == ch)
-		{
-			return (&str[i]);
-		}
-		i++;
-	}
-	if (s[i] == c)
-		return (&str[i]);
-	return (NULL);
+char	*ft_stradd(char *s1, char const *s2)
+{
+	char	*str_temp;
+
+	str_temp = ft_strdup(s1);
+	if (s1 != NULL && ft_strcmp(s1, "") != 0)
+		ft_strdel(&s1);
+	s1 = ft_strjoin(str_temp, s2);
+	ft_strdel(&str_temp);
+	return (s1);
 }

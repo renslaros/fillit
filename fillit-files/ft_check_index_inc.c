@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_array_max_value.c                               :+:    :+:            */
+/*   ft_check_index_inc.c                               :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: rlaros <rlaros@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/02/04 21:01:10 by rlaros         #+#    #+#                */
-/*   Updated: 2019/02/04 21:01:23 by rlaros        ########   odam.nl         */
+/*   Created: 2019/05/31 06:38:05 by rlaros         #+#    #+#                */
+/*   Updated: 2019/05/31 06:38:15 by rlaros        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "fillit.h"
+
 /*
-** Returns the value of the array’s biggest element.
+** @desc - Checks if it's necessary to increment index to a new line.
+** @param t_tbox *tbox - ptr to t_tbox struct which will holds most of \
+** the necessary variables for board manipulation.
+** @return 1 or 0 - yes or no.
 */
 
-int		ft_array_max_value(int *arr, int length)
+int		ft_check_index_inc(t_tbox *tbox)
 {
-	int		i;
-	int		max;
-
-	i = 0;
-	max = 0;
-	while (i < length)
+	if (tbox->board[tbox->xy[0]][tbox->xy[1]] == '\n')
 	{
-		if (max < arr[i])
-			max = arr[i];
-		i += 1;
+		tbox->xy[0]++;
+		tbox->xy[1] = 0;
+		return (1);
 	}
-	return (max);
+	else
+		return (0);
 }

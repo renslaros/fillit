@@ -3,74 +3,49 @@
 /*                                                        ::::::::            */
 /*   ft_itoa.c                                          :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: rlaros <rlaros@student.codam.nl>             +#+                     */
+/*   By: abumbier <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/01/16 14:17:06 by rlaros         #+#    #+#                */
-/*   Updated: 2019/02/04 03:44:21 by rlaros        ########   odam.nl         */
+/*   Created: 2019/02/02 21:33:17 by abumbier      #+#    #+#                 */
+/*   Updated: 2019/02/11 19:46:49 by abumbier      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static	size_t	ft_len(int n)
+static char	*get_str(char *str, int n, int len)
 {
-	size_t len;
+	unsigned	temp;
 
-	len = 0;
-	if (n < 0)
+	if (str == NULL)
+		return (NULL);
+	else if (n < 0)
 	{
-		len++;
-	}
-	while (n % 10 != n)
-	{
-		len++;
-		n = n / 10;
-	}
-	len++;
-	return (len);
-}
-
-static	void	ft_fill(char *number, int j, int n)
-{
-	static	int	i;
-
-	i = j;
-	if (n % 10 == n)
-	{
-		number[i] = n + 48;
-		i++;
+		str[0] = '-';
+		temp = n * -1;
 	}
 	else
+		temp = n;
+	str[len] = '\0';
+	if (n == 0)
+		str[0] = '0';
+	while (temp)
 	{
-		ft_fill(number, i, n / 10);
-		number[i] = (n % 10) + 48;
-		i++;
+		str[len - 1] = (temp % 10) + '0';
+		temp /= 10;
+		len--;
 	}
+	return (str);
 }
 
-char			*ft_itoa(int n)
+char		*ft_itoa(int n)
 {
-	int			i;
-	size_t		len;
-	char		*number;
+	int			len;
+	char		*str;
 
-	i = 0;
-	len = ft_len(n);
-	number = (char *)malloc(len + 1);
-	if (!number)
-		return (NULL);
-	if (n < 0)
-	{
-		number[i] = '-';
-		i++;
-		if (n == -2147483648)
-		{
-			number[10] = '8';
-			n = n / 10;
-		}
-		n = -n;
-	}
-	ft_fill(number, i, n);
-	number[len] = '\0';
-	return (number);
+	if (n >= 0)
+		len = ft_intlen(n);
+	else
+		len = ft_intlen(n) + 1;
+	str = (char*)malloc(sizeof(char) * len + 1);
+	return (get_str(str, n, len));
 }

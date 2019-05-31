@@ -1,33 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   ft_strmap.c                                        :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: rlaros <rlaros@student.codam.nl>             +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2019/01/16 14:17:06 by rlaros         #+#    #+#                */
-/*   Updated: 2019/01/31 16:16:29 by rlaros        ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   ft_strmap.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abumbier <abumbier@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/02/01 17:49:37 by abumbier          #+#    #+#             */
+/*   Updated: 2019/02/23 11:44:46 by abumbier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strmap(char const *s, char (*f)(char))
+char		*ft_strmap(char const *s, char (*f)(char))
 {
-	char	*fresh;
 	int		i;
+	char	*str;
 
-	if (!s || !f)
-		return (NULL);
-	fresh = (char *)malloc(sizeof(char) * ft_strlen(s) + 1);
-	if (!fresh)
-		return (NULL);
 	i = 0;
-	while (s[i])
+	if (s != NULL && f != NULL)
 	{
-		fresh[i] = f(s[i]);
-		i++;
+		str = (char*)malloc(sizeof(char) * ft_strlen(s) + 1);
+		if (str != NULL)
+		{
+			while (s[i])
+			{
+				str[i] = f(s[i]);
+				i++;
+			}
+			str[i] = '\0';
+			return (str);
+		}
 	}
-	fresh[i] = '\0';
-	return (fresh);
+	return (NULL);
 }

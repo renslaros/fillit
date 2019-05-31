@@ -1,170 +1,172 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   ft_get_next_line.c                                 :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: rlaros <rlaros@student.codam.nl>             +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2019/02/07 14:39:49 by rlaros         #+#    #+#                */
-/*   Updated: 2019/04/07 04:53:07 by rlaros        ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   ft_get_next_line.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abumbier <abumbier@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/04/01 18:37:06 by abumbier          #+#    #+#             */
+/*   Updated: 2019/04/17 19:07:31 by abumbier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 /*
-** @desc Retrieves index of \n if present. If not it retrieves index of \0.
-** @param char *stack_item - item of the static stack array
-** @var unsigned int i - Iterator used to loop over stack_item characters.
-** @return unsigned int - Either Index Pos. of \n or \0 if no \n can be found
+** @desc: ft_strjoin which return value overwrites s1. (without leaks)
 */
 
-/*
-** - Loop over char *stack_item until \n or \0 has been found.
-** - Increase iterator while doing so.
-** - Return iterator which will be the index equalling the position of \n or \0
-*/
-
-static unsigned int	ft_get_endl_or_null_pos(char *stack_item)
+char			*ft_stradd(char *s1, char const *s2)
 {
-	unsigned int i;
+	char	*str_temp;
 
-	i = 0;
-	while (stack_item[i] != '\n' && stack_item[i] != '\0')
-		i++;
-	return (i);
+	str_temp = ft_strdup(s1);
+	if (s1 != NULL && ft_strcmp(s1, "") != 0)
+		ft_strdel(&s1);
+	s1 = ft_strjoin(str_temp, s2);
+	ft_strdel(&str_temp);
+	return (s1);
 }
 
 /*
-** @desc Joins the current stack_item string with the newly read buff string
-** @param char *stack_item - item of the static stack array
-** @param char *buff - string read from fd based on dynamic buff size
-** @param size_t len - length of second string. len + strlen(stack_item) = total
-** @var char *fresh - fresh char* to store and return joined string
-** @var char *tmp - temporary char* used to store first index of fresh char*
-** @return char * - first index of fresh char array stored as tmp
+** @desc: Creates a new node and fills necessary values.
+** @param: fd - file descriptor for which the node is created.
+** @var: lst - pointer to the created node.
+** @return: lst pointer or 0 if malloc failed.
 */
 
-/*
-** - Allocate the required memory for the fresh string using ft_strnew()
-** - Pass the result of ft_strlen(stack_item) + len + 1 to ft_strnew()
-** - Store adress of first index from char *fresh in tmp
-** - As long as there are chars in stack_item, iterate over the indexes
-** - Store the values in fresh and increase that index while looping as well
-** - Once stack_item has been put into fresh, we loop while (*buff && len > 0)
-** - We put the contents of *buff in *fresh after the contents of *stack_item
-** - We increase both the index of fresh and buff while decreasing length
-** - After stack_item & buff have been joined into fresh, we add a \0 at the end
-** - We return the first index of the fresh char array currently stored in tmp
-*/
-
-static char			*ft_joiner(char *stack_item, char *buff, size_t len)
+t_gnl_list		*new_lst(const int fd)
 {
-	char		*fresh;
-	char		*tmp;
+	t_gnl_list	*lst;
 
-	fresh = ft_strnew(((ft_strlen(stack_item) + len) + 1));
-	tmp = fresh;
-	while (*stack_item)
-	{
-		*fresh = *stack_item;
-		fresh++;
-		stack_item++;
-	}
-	while (*buff && len > 0)
-	{
-		*fresh = *buff;
-		fresh++;
-		buff++;
-		len--;
-	}
-	*fresh = '\0';
-	return (tmp);
+	lst = (t_gnl_list*)malloc(sizeof(t_gnl_list));
+	if (lst == NULL)
+		return (0);
+	lst->next = NULL;
+	lst->fd = fd;
+	lst->len = 0;
+	lst->str_main = "";
+	lst->temp = NULL;
+	return (lst);
 }
 
 /*
-** @desc Checks whether there's a \n or if there's something in stack_item.
-** @desc If one of the conditions match, it uses ft_strcpy() accordingly.
-** @param char *stack_item - item of the static stack array
-** @return char *stack_item - adress of first char in stack_item string
-** @return NULL if there is no \n in the stack_item string && index of \0 != > 0
+** @desc: Fills the lst->main_str with full line, fills the lst->temp with \
+** everything left after \n in buffer.
+** @param: fd - from file which chould be read.
+** @param: t_gnl_list **lst - lst that holds correct lines read for each fd.
+** @param: minivan - buffer holding the chars read.
+** @param: a - the amount of chars read.
+** @return: 1 if something is being read; 0 if reading has been completed; \
+** -1 if reading failed.
 */
 
-/*
-** - Check if there is a \n in stack_item
-** -	If so: Override stack_item with everything after the \n
-** - 	Return first position of ''fixed'' stack_item
-** - Check if there's an index with \0 > 0
-** - 	If so: Override stack_item with everything starting @ \0
-** - In case both conditions aren't met, we return NULL
-*/
-
-static char			*ft_check_and_copy(char *stack_item)
+int				gnl_magic(const int fd, t_gnl_list **lst, char *minivan, int a)
 {
-	if (ft_strchr(stack_item, ENDL))
-	{
-		ft_strcpy(stack_item, ft_strchr(stack_item, ENDL) + 1);
-		return (stack_item);
-	}
-	if (ft_get_endl_or_null_pos(stack_item) > 0)
-	{
-		ft_strcpy(stack_item, ft_strchr(stack_item, '\0'));
-		return (stack_item);
-	}
-	return (NULL);
-}
-
-/*
-** @desc Gets next line from given file descriptor and stores it in received ptr
-** @param int const fd - Filedescriptor
-** @param char **line - Line pointer
-** @var static char* stack[MAX_FD] - 2d array used to store strings on FD index
-** @var char *ptr - Points to a certain stack[fd]
-** @var char buff[BUFF_SIZE + 1] - Stores buffer read from the read function.
-** @var int retval - Stores return value of standard read function.
-** @return int -1 on unsuccessfull read of line / invalid input
-** @return int 1 on successfull read of line without it being the last line
-** @return int 0 on successfull read of last line in filedescriptor
-*/
-
-/*
-** - set retval to 1; making sure we can go in the loop the first time
-** - Validate input & memory allocation attempt. If invalid return -1
-** - Loop until there's a \n in stack[fd] as long as retval > 0
-** - 	Set retval to the return value of read(fd, buff, BUFF_SIZE)
-** -	Set a \0 at buff[retval]
-** - 	point ptr to adress of stack[fd]
-** - 	Set stack[fd] to the return value of ft_joiner(ptr, buff, retval)
-** - 	free ptr adress since ft_joiner returned a new adress for stack[fd]
-** - Set line pointer to the return value of ft_strsub()
-** - This will be a substring of stack[fd] starting at 0 until \n or \0
-** - Return 0 or 1 based on the return value of ft_check_and_copy(stack[fd])
-*/
-
-int					ft_get_next_line(int const fd, char **line)
-{
-	static char		*stack[MAX_FD];
-	char			*ptr;
-	char			buff[BUFF_SIZE + 1];
-	int				retval;
-
-	retval = 1;
-	if (fd < 0 || BUFF_SIZE < 1 || !line || read(fd, buff, 0) < 0)
+	(*lst)->str_main = ft_stradd((*lst)->str_main, minivan);
+	if ((*lst)->str_main == NULL)
 		return (-1);
-	if (!(stack[fd]))
+	while (ft_memchr(minivan, '\n', BUFF_SIZE) == NULL && a > 0)
 	{
-		stack[fd] = ft_strnew(0);
-		if (stack[fd] == NULL)
+		a = read(fd, minivan, BUFF_SIZE);
+		minivan[a] = '\0';
+		if (a > 0)
+			(*lst)->str_main = ft_stradd((*lst)->str_main, minivan);
+		if ((*lst)->str_main == NULL)
 			return (-1);
 	}
-	while (!(ft_strchr(stack[fd], ENDL)) && retval > 0)
+	(*lst)->len = ft_wordlen((*lst)->str_main, '\n');
+	a = ft_strlen((*lst)->str_main);
+	if ((*lst)->len + 1 < a)
 	{
-		retval = read(fd, buff, BUFF_SIZE);
-		buff[retval] = '\0';
-		ptr = stack[fd];
-		stack[fd] = ft_joiner(ptr, buff, retval);
-		free(ptr);
+		(*lst)->temp = (char*)malloc(a - (*lst)->len);
+		if ((*lst)->temp == NULL)
+			return (-1);
+		(**lst).temp[a - (*lst)->len - 1] = '\0';
+		(*lst)->temp = ft_memcpy((*lst)->temp, \
+		&(*lst)->str_main[(*lst)->len + 1], a - (*lst)->len - 1);
 	}
-	*line = ft_strsub(stack[fd], 0, ft_get_endl_or_null_pos(stack[fd]));
-	return (ft_check_and_copy(stack[fd]) == NULL ? 0 : 1);
+	(*lst)->str_main[(*lst)->len] = '\0';
+	return (1);
+}
+
+/*
+** @desc: Reads from fd into minivan, checks if lst->temp has any value, \
+** calls gnl_magic for a line.
+** @param: fd from file which chould be read.
+** @param: t_gnl_list **lst - lst that holds correct lines read for each fd.
+** @var: int a - holds the amount of chars read.
+** @var: minivan - buffer holding the chars read.
+** @var: feed_in - new string which will be passed into gnl_magic.
+** @return: 1 if something is being read; 0 if reading has been completed; \
+** -1 if reading failed.
+*/
+
+int				read_from_fd(const int fd, t_gnl_list **lst)
+{
+	int		a;
+	char	minivan[BUFF_SIZE + 1];
+
+	a = 0;
+	ft_bzero(minivan, BUFF_SIZE + 1);
+	if ((*lst)->temp != NULL)
+	{
+		if (ft_strchr((*lst)->temp, '\n') == NULL)
+			a = read(fd, minivan, BUFF_SIZE);
+		(*lst)->str_main = ft_strjoin((*lst)->str_main, (*lst)->temp);
+		ft_strdel(&(*lst)->temp);
+	}
+	else
+	{
+		a = read(fd, minivan, BUFF_SIZE);
+		if (a == 0 && (*lst)->temp == NULL)
+			return (0);
+	}
+	if (a == -1 || (*lst)->str_main == NULL)
+		return (-1);
+	if (a > 0 || !(ft_strcmp((*lst)->str_main, "") == 0))
+		if (gnl_magic(fd, lst, minivan, a) >= 0)
+			return (1);
+	return (0);
+}
+
+/*
+** @desc: Finds the correct node for fd, calls read_from_fd, copies \
+** necessary string in *line.
+** @param: fd from file which chould be read.
+** @param: char **line - adress of a pointer which will point to a \
+** line read from fd.
+** @var: int a - holds the return value of a read_from_fd function.
+** @var: static t_gnl_list *head - pointer to the first node in lst.
+** @var: t_gnl_lst *lst - pointer which will iterate through the list.
+** @return: a - return value of a read_from_fd.
+*/
+
+int				ft_get_next_line(const int fd, char **line)
+{
+	int					a;
+	t_gnl_list			*lst;
+	static t_gnl_list	*head;
+
+	lst = head;
+	if (lst == NULL)
+	{
+		lst = new_lst(fd);
+		head = lst;
+	}
+	if (fd < 0 || line == NULL || lst == NULL)
+		return (-1);
+	while (lst->next != NULL && fd != lst->fd)
+		lst = lst->next;
+	if (lst->next == NULL && fd != lst->fd)
+	{
+		lst->next = new_lst(fd);
+		lst = lst->next;
+	}
+	a = read_from_fd(fd, &lst);
+	*line = ft_strdup(lst->str_main);
+	if (ft_strcmp(lst->str_main, "") != 0)
+		ft_strdel(&(lst->str_main));
+	lst->str_main = "";
+	return (a);
 }

@@ -3,14 +3,22 @@
 /*                                                        ::::::::            */
 /*   fillit.c                                           :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: rlaros <rlaros@student.codam.nl>             +#+                     */
+/*   By: abumbier <abumbier@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/03/05 22:24:06 by rlaros         #+#    #+#                */
-/*   Updated: 2019/04/15 19:21:30 by rlaros        ########   odam.nl         */
+/*   Updated: 2019/05/31 02:58:39 by rlaros        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+
+static void	ft_convert_and_solve(int tetriminos[][8], int tcount, t_tbox *tbox)
+{
+	int	tetri[tcount][6];
+
+	ft_convert(tetriminos, tcount, tetri);
+	ft_solve_fillit(tetri, tbox);
+}
 
 /*
 ** @desc - Validates & Fills tetriminios as the smallest possible square
@@ -27,10 +35,10 @@
 ** If setup doesn't return 1 return an error
 */
 
-int		main(int argc, char **argv)
+int			main(int argc, char **argv)
 {
-	int	tetriminos[MAX_TETRIMINOS][8];
-	int	tcount;
+	int		tetriminos[MAX_TETRIMINOS][8];
+	int		tcount;
 	t_tbox	*tbox;
 
 	tcount = 1;
@@ -40,7 +48,7 @@ int		main(int argc, char **argv)
 	{
 		tbox = ft_make_tbox(tcount);
 		tbox->board = ft_make_board(tbox);
-		ft_fillit_solve(ft_convert(tetriminos), tbox);
+		ft_convert_and_solve(tetriminos, tcount, tbox);
 		ft_print_board(tbox->board);
 	}
 	else

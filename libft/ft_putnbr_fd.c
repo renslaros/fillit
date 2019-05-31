@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   ft_putnbr_fd.c                                     :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: rlaros <rlaros@student.codam.nl>             +#+                     */
+/*   By: abumbier <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/01/16 14:17:06 by rlaros         #+#    #+#                */
-/*   Updated: 2019/01/29 07:05:18 by rlaros        ########   odam.nl         */
+/*   Created: 2019/01/25 23:40:09 by abumbier      #+#    #+#                 */
+/*   Updated: 2019/02/11 19:52:43 by abumbier      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,24 @@
 
 void	ft_putnbr_fd(int n, int fd)
 {
-	int int_min;
+	char		c;
+	unsigned	temp;
 
-	int_min = -2147483648;
-	if (n == int_min)
-		ft_putstr_fd("-2147483648", fd);
-	if (n < 0 && n != int_min)
+	if (n < 0)
 	{
-		ft_putchar_fd('-', fd);
-		n = n * -1;
+		write(fd, "-", 1);
+		temp = n * -1;
 	}
-	if (n >= 10)
+	else
+		temp = n;
+	if (temp < 10)
 	{
-		ft_putnbr_fd((n / 10), fd);
-		ft_putnbr_fd((n % 10), fd);
+		c = '0' + temp;
+		write(fd, &c, 1);
 	}
-	else if (n != int_min)
+	else
 	{
-		ft_putchar_fd((n + 48), fd);
+		ft_putnbr_fd(temp / 10, fd);
+		ft_putnbr_fd(temp % 10, fd);
 	}
 }

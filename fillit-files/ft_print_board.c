@@ -1,17 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_iswhitespace.c                                  :+:    :+:            */
+/*   ft_print_board.c                                   :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: rlaros <rlaros@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/02/04 20:35:18 by rlaros         #+#    #+#                */
-/*   Updated: 2019/02/04 20:35:26 by rlaros        ########   odam.nl         */
+/*   Created: 2019/05/31 03:01:04 by rlaros         #+#    #+#                */
+/*   Updated: 2019/05/31 03:01:55 by rlaros        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_iswhitespace(int c)
+#include "fillit.h"
+
+/*
+** @desc - Prints a board.
+** @param char **board - table of points that represent a board on which \
+** tetriminos are displayed.
+*/
+
+void		ft_print_board(char **board)
 {
-	return (c == ' ' || c == '\t' || c == '\n' || c == '\v' || c == '\f'
-			|| c == '\r');
+	int	j;
+
+	j = 0;
+	while (board[j] != NULL)
+	{
+		ft_putstr(board[j]);
+		j++;
+	}
 }

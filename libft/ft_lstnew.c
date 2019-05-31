@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   ft_lstnew.c                                        :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: rlaros <rlaros@student.codam.nl>             +#+                     */
+/*   By: abumbier <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/01/16 14:17:06 by rlaros         #+#    #+#                */
-/*   Updated: 2019/02/01 01:27:10 by rlaros        ########   odam.nl         */
+/*   Created: 2019/02/11 19:32:26 by abumbier      #+#    #+#                 */
+/*   Updated: 2019/02/14 16:59:36 by abumbier      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,24 @@
 
 t_list	*ft_lstnew(void const *content, size_t content_size)
 {
-	t_list *lst;
+	t_list	*new_link;
 
-	lst = (t_list *)malloc(sizeof(t_list));
-	if (lst == NULL)
+	new_link = (t_list*)malloc(sizeof(*new_link));
+	if (new_link == NULL)
 		return (NULL);
+	new_link->next = NULL;
 	if (content == NULL)
 	{
-		lst->content = NULL;
-		lst->content_size = 0;
+		new_link->content = NULL;
+		new_link->content_size = 0;
 	}
 	else
 	{
-		lst->content = (void *)malloc(sizeof(content_size));
-		if (lst->content == NULL)
-			return (0);
-		lst->content = (void *)ft_memcpy(lst->content, content, content_size);
-		lst->content_size = content_size;
+		new_link->content = malloc(sizeof(content_size));
+		if (new_link->content == NULL)
+			return (NULL);
+		ft_memcpy(new_link->content, content, content_size);
+		new_link->content_size = content_size;
 	}
-	lst->next = NULL;
-	return (lst);
+	return (new_link);
 }

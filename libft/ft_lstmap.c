@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   ft_lstmap.c                                        :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: rlaros <rlaros@student.codam.nl>             +#+                     */
+/*   By: abumbier <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/01/16 14:17:06 by rlaros         #+#    #+#                */
-/*   Updated: 2019/01/31 21:49:32 by rlaros        ########   odam.nl         */
+/*   Created: 2019/02/13 10:59:54 by abumbier      #+#    #+#                 */
+/*   Updated: 2019/02/14 17:49:48 by abumbier      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,23 @@
 
 t_list	*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
 {
-	t_list *tmp;
+	t_list	*new_list;
+	t_list	*new_temp;
 
-	tmp = lst;
-	if (lst != NULL)
+	if (lst == NULL)
+		return (NULL);
+	new_temp = f(lst);
+	new_list = new_temp;
+	while (lst->next)
 	{
-		tmp = f(lst);
-		tmp->next = ft_lstmap(lst->next, f);
+		lst = lst->next;
+		new_temp->next = f(lst);
+		if (new_temp->next == NULL)
+		{
+			free(new_temp->next);
+			return (NULL);
+		}
+		new_temp = new_temp->next;
 	}
-	return (tmp);
+	return (new_list);
 }

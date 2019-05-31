@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_memchr.c                                        :+:    :+:            */
+/*   memchr.c                                           :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: rlaros <rlaros@student.codam.nl>             +#+                     */
+/*   By: abumbier <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/01/16 14:17:06 by rlaros         #+#    #+#                */
-/*   Updated: 2019/01/28 21:52:17 by rlaros        ########   odam.nl         */
+/*   Created: 2019/01/23 17:19:03 by abumbier      #+#    #+#                 */
+/*   Updated: 2019/02/11 19:49:47 by abumbier      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,17 @@
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {
-	unsigned char	*s2;
-	size_t			i;
+	char	ch;
+	char	*str;
+	size_t	i;
 
+	str = (char *)s;
+	ch = c;
 	i = 0;
-	s2 = (unsigned char *)s;
 	while (i < n)
 	{
-		if (*s2 == (unsigned char)c)
-			return (s2);
-		s2++;
+		if (str[i] == ch)
+			return (str + i);
 		i++;
 	}
 	return (NULL);

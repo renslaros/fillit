@@ -3,23 +3,17 @@
 /*                                                        ::::::::            */
 /*   ft_strcpy.c                                        :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: rlaros <rlaros@student.codam.nl>             +#+                     */
+/*   By: abumbier <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/01/16 14:17:06 by rlaros         #+#    #+#                */
-/*   Updated: 2019/02/04 06:21:35 by rlaros        ########   odam.nl         */
+/*   Created: 2019/01/21 16:53:17 by abumbier      #+#    #+#                 */
+/*   Updated: 2019/02/11 19:54:15 by abumbier      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
 char	*ft_strcpy(char *dst, const char *src)
 {
-	int i;
-
-	i = 0;
-	while (src[i])
-	{
-		dst[i] = src[i];
-		i++;
-	}
-	dst[i] = '\0';
+	ft_memcpy(dst, src, ft_strlen(src) + 1);
 	return (dst);
 }

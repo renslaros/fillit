@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   ft_strdel.c                                        :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: rlaros <rlaros@student.codam.nl>             +#+                     */
+/*   By: abumbier <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/01/16 14:17:06 by rlaros         #+#    #+#                */
-/*   Updated: 2019/01/22 16:44:13 by rlaros        ########   odam.nl         */
+/*   Created: 2019/01/31 19:20:27 by abumbier      #+#    #+#                 */
+/*   Updated: 2019/02/11 19:54:33 by abumbier      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
